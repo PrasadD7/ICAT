@@ -1,0 +1,22 @@
+<nav class="navstyle">
+</nav>
+<div>
+  <div class="questionpane">
+    {{ question}}
+  </div>
+  <div class="optionpane">
+    <div class="option">
+      <input type="radio" name="optval" id="" value="" placeholder="">{{question.sport.q1.options[0]}}
+    </div>
+    <div class="option">
+      <input type="radio" name="optval" id="">{{question.sport.q1.options[1]}}
+    </div>
+    <div class="option">
+      <input type="radio" name="optval" id="">{{question.sport.q1.options[2]}}
+    </div>
+    <div class="option">
+      <input type="radio" name="optval" id="">{{question.sport.q1.options[3]}}
+    </div>
+  </div>
+  <div><input type="button" value="Next Question" id="submitBtn" (click)='nxtQuestion()'></div>
+</div>
