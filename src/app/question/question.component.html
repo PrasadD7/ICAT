@@ -6,16 +6,19 @@
   </div>
   <div class="optionpane">
     <div class="option">
-      <input type="radio" name="optval" id="" value="" placeholder="">{{question.sport.q1.options[0]}}
+      <input type="radio" name="optval" id="" value="" placeholder="">{{question}}
     </div>
     <div class="option">
-      <input type="radio" name="optval" id="">{{question.sport.q1.options[1]}}
+      <input type="radio" name="optval" id="" [(ngModel)]="option1">
     </div>
     <div class="option">
-      <input type="radio" name="optval" id="">{{question.sport.q1.options[2]}}
+      <input type="radio" name="optval" id="" [(ngModel)]="option2">
     </div>
     <div class="option">
-      <input type="radio" name="optval" id="">{{question.sport.q1.options[3]}}
+      <input type="radio" name="optval" id="" [(ngModel)]="option3">
+    </div>
+    <div class="option">
+      <input type="radio" name="optval" id="" [(ngModel)]="option4">
     </div>
   </div>
   <div><input type="button" value="Next Question" id="submitBtn" (click)='nxtQuestion()'></div>

@@ -14,23 +14,25 @@ export class LoginComponent implements OnInit {
   constructor(private usersvc: UsersService, private router: Router) { }
 
   ngOnInit() {
-    this.usersvc.getUsers().subscribe(data => {
-      this.users = data;
-    });
+
   }
 
   onLogin(): any {
-
-    this.users.forEach(user => {
-      if (user.email == this.email && user.password == this.password) {
-        localStorage.clear();
-        localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigateByUrl('/questions');
-      }
+    this.usersvc.getUsers().subscribe(data => {
+      this.users = data;
+      this.users.forEach(user => {
+        if (user.email == this.email && user.password == this.password) {
+          localStorage.clear();
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigateByUrl('/questions');
+        }
+      });
     });
+    console.log(this.users);
+
   }
 
-  onSignUp(): any{
+  onSignUp(): any {
     this.router.navigateByUrl('/register');
   }
 

@@ -19,7 +19,11 @@ export class RegisterComponent implements OnInit {
   onRegister(): any {
     console.log(this.name);
 
-    this.usersvc.postUser(this.name, this.email, this.password).subscribe();
+    this.usersvc.postUser(this.name, this.email, this.password).subscribe(data => {
+      alert(data);
+    }
+
+    );
   }
 
 }
