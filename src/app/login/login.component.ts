@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       this.users.forEach(user => {
         if (user.email == this.email && user.password == this.password) {
           localStorage.clear();
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('participant', JSON.stringify(user));
           this.router.navigateByUrl('/questions');
         }
       });

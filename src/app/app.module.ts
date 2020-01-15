@@ -8,7 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ResultComponent } from './result/result.component';
-
+import { QuestionService } from './question.service';
+import { AuthGuard } from "./auth/auth.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { ResultComponent } from './result/result.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [QuestionService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

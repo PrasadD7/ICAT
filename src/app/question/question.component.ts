@@ -13,9 +13,9 @@ export class QuestionComponent implements OnInit {
   option2;
   option3;
   option4;
-  count = 0;
+  count = 1;
   quesno: number = 0;
-  answer;
+  optval;
   score;
   constructor(private qsvc: QuestionService) { }
 
@@ -23,11 +23,11 @@ export class QuestionComponent implements OnInit {
     this.qsvc.fetchQuestions().subscribe(data => {
       this.questionpkg = data;
       console.log(this.questionpkg);
-      this.question = data.maths.q1.question;
-      this.option1 = data.maths.q1.options['1'];
-      this.option2 = data.maths.q1.options['2'];
-      this.option3 = data.maths.q1.options['3'];
-      this.option4 = data.maths.q1.options['4'];
+      this.question = data.quiz.maths.q1.question;
+      this.option1 = data.quiz.maths.q1.options['0'];
+      this.option2 = data.quiz.maths.q1.options['1'];
+      this.option3 = data.quiz.maths.q1.options['2'];
+      this.option4 = data.quiz.maths.q1.options['3'];
       //quiz.maths.q2.options[""0""]
 
     })
@@ -37,6 +37,8 @@ export class QuestionComponent implements OnInit {
 
     console.log(this.questionpkg);
     this.count++;
+    console.log();
+
     // this.quesno = 'q'+ this.count;
     this.question = this.questionpkg.quiz.sport;
   }

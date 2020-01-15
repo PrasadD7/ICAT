@@ -4,6 +4,10 @@ div{
 .navstyle{
   background-color: blueviolet;
   height: 10%;
+  font-size: 30px;
+color:whitesmoke;
+border:2px solid black;
+border-radius: 5px;
 }
 
 .questionpane{
