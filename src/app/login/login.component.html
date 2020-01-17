@@ -1,18 +1,14 @@
-<head>
-  <link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-<form>
+<div class="container-fluid mb-5"><form>
   <div class="form-group">
     <label for="email">Email address</label>
     <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
-    [(ngModel)]='email'>
+    [(ngModel)]='email'required>
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
-  </div>   
+  </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary" (click)="onLogin()">Submit</button>
   </div>
@@ -20,3 +16,4 @@
       <button type="submit" class="btn btn-secondary" (click)="onSignUp()">Create a new one</button>
   </div>
 </form>
+</div>
