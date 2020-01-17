@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { User } from './user'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UsersService {
     return this.http.get( this.rooturl + '/');
   }
   //?name='+nname+'&email'+nemail+'&name'
-  postUser(nname, nemail, npassword,nmobile): any {
-    return this.http.post(this.rooturl +'?name='+nname+'+&email='+nemail+'&password='+npassword+'&mobileNo='+nmobile,{});
+  postUser(user : User): any {
+    return this.http.post(this.rooturl,user);
   }
 }
