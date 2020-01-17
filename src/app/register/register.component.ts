@@ -19,10 +19,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   onRegister(): any {
-    console.log(this.name);
-    this.usersvc.postUser(this.name, this.email, this.password, this.mobile).subscribe(data => {
-      alert(data);
-    });
+    if (this.password==this.cpassword ) {
+      this.usersvc.postUser(this.name, this.email, this.password, this.mobile).subscribe(data => {
+      this.router.navigateByUrl("/");
+      });
+    } 
+      alert("Registration failed");
+      this.router.navigateByUrl("/register");
   }
 
 }

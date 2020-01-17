@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { ResultComponent } from './result/result.component';
 import { QuestionService } from './question.service';
 import { AuthGuard } from "./auth/auth.guard";
+import { ReactiveFormsModule } from "@angular/forms";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { AuthGuard } from "./auth/auth.guard";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [QuestionService, AuthGuard],
   bootstrap: [AppComponent]

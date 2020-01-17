@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class UsersService {
 
-  readonly rooturl='http://localhost:7070//icat-users/users';
+  readonly rooturl='http://localhost:8080/icat-users/users';
   constructor(private http: HttpClient) { }
 
   getUsers(): any {

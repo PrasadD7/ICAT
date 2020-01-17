@@ -10,7 +10,7 @@ export class QuestionService {
   seconds : number;
   timer;
   qnProgress:number;
-readonly rooturl = 'http://localhost:7777';
+readonly rooturl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 

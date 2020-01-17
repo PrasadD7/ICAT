@@ -11,25 +11,29 @@ export class LoginComponent implements OnInit {
   users;
   email;
   password;
+  found:boolean = false;
   constructor(private usersvc: UsersService, private router: Router) { }
 
   ngOnInit() {
 
   }
 
-  onLogin(): any {
-    this.usersvc.getUsers().subscribe(data => {
+  onLogin() {
+      this.usersvc.getUsers().subscribe(data => {
       this.users = data;
       this.users.forEach(user => {
         if (user.email == this.email && user.password == this.password) {
           localStorage.clear();
           localStorage.setItem('participant', JSON.stringify(user));
+          this.found=true;
           this.router.navigateByUrl('/questions');
         }
       });
+      if (this.found==false) {
+        alert("Logging in failed !!")
+      }
     });
     console.log(this.users);
-
   }
 
   onSignUp(): any {

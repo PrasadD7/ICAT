@@ -1,6 +1,7 @@
-<link rel="stylesheet"
-href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+<head>
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
 <form>
   <div class="form-group">
     <label for="email">Email address</label>
@@ -11,14 +12,11 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
+  </div>   
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" (click)="onLogin()">Submit</button>
   </div>
   <div>
-    <button type="submit" class="btn btn-primary" (click)="onLogin()">Submit</button>
-  </div>
-  <br>
-  <div>
-    <p>
       <button type="submit" class="btn btn-secondary" (click)="onSignUp()">Create a new one</button>
-    </p>
   </div>
 </form>

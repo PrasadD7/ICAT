@@ -2,34 +2,39 @@
 <link rel="stylesheet"
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<form>
-  <div class="form-group col-md-6">
+<form  (ngSubmit)="onRegister()" #form="ngForm">
+  <div class="form-group">
     <label for="inputEmail4">Name</label>
-    <input name="name" type="text" class="form-control" id="inputName" [(ngModel)]='name'>
+    <input name="name" type="text" class="form-control" id="inputName" [(ngModel)]='name' required>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputEmail4">Email</label>
-      <input name="email" type="email" class="form-control" id="inputEmail4" [(ngModel)]='email'>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Password</label>
-      <input name="password" type="password" class="form-control" id="inputPassword4"
-      [(ngModel)]='password'>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Confirm Password</label>
-      <input name="cpassword" type="password" class="form-control" id="inputPassword4"
-      [(ngModel)]='cpassword'>
-    </div>
-    
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Mobile Number</label>
-      <input name="name" type="text" class="form-control" id="inputName" [(ngModel)]='name'>
+      <input name="email" type="email" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*
+      @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;" class="form-control" id="inputEmail" [(ngModel)]='email' required>
     </div>
   </div>
-  <div class="form-group col-md-6">
-    <button type="button" class="btn btn-primary">Submit</button>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="inputPassword1">Password</label>
+      <input name="password" type="password" class="form-control" id="inputPassword1" [(ngModel)]='password' required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="inputPassword4">Confirm Password</label>
+      <input name="cpassword" type="password" class="form-control" id="inputPassword2" [(ngModel)]='cpassword' required>
+    </div>
+  </div>
+  
+  <div class="form-row">
+  <div class="form-group">
+      <label for="inputMobileNo">Mobile Number</label>
+      <input name="name" type="text" pattern="" class="form-control" id="inputMobile" maxlength="10" [(ngModel)]='mobile'>
+    </div>
+  </div>
+  <div class="form-row">
+    <button type="submit" class="btn btn-secondary">Create a new one</button>
   </div>
   </form>
 
