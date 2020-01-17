@@ -6,6 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuestionService {
 
+  qns : any[];
+  seconds : number;
+  timer;
+  qnProgress:number;
 readonly rooturl = 'http://localhost:7777';
 
   constructor(private http: HttpClient) { }
@@ -13,4 +17,6 @@ readonly rooturl = 'http://localhost:7777';
   fetchQuestions = function(): any{
     return this.http.get(this.rooturl);
   }
+
+  
 }

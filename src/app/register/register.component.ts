@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit {
   name;
   email;
   password;
+  cpassword;
+  mobile;
   message;
   constructor(private usersvc: UsersService, private router: Router) { }
 
@@ -18,12 +20,9 @@ export class RegisterComponent implements OnInit {
   }
   onRegister(): any {
     console.log(this.name);
-
-    this.usersvc.postUser(this.name, this.email, this.password).subscribe(data => {
+    this.usersvc.postUser(this.name, this.email, this.password, this.mobile).subscribe(data => {
       alert(data);
-    }
-
-    );
+    });
   }
 
 }

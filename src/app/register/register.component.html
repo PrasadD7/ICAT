@@ -3,6 +3,10 @@
 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <form>
+  <div class="form-group col-md-6">
+    <label for="inputEmail4">Name</label>
+    <input name="name" type="text" class="form-control" id="inputName" [(ngModel)]='name'>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
@@ -13,12 +17,19 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
       <input name="password" type="password" class="form-control" id="inputPassword4"
       [(ngModel)]='password'>
     </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Confirm Password</label>
+      <input name="cpassword" type="password" class="form-control" id="inputPassword4"
+      [(ngModel)]='cpassword'>
+    </div>
+    
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Mobile Number</label>
+      <input name="name" type="text" class="form-control" id="inputName" [(ngModel)]='name'>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">Name</label>
-    <input type="text" name="name" class="form-control" id="inputAddress" placeholder="" [(ngModel)]='name'>
+  <div class="form-group col-md-6">
+    <button type="button" class="btn btn-primary">Submit</button>
   </div>
+  </form>
 
-
-  <button type="submit" class="btn btn-primary" (click)="onRegister()">Register Me !!!</button>
-</form>

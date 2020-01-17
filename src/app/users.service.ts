@@ -7,14 +7,14 @@ import { Injectable } from '@angular/core';
 })
 export class UsersService {
 
-  readonly rooturl='http://localhost:7777';
+  readonly rooturl='http://localhost:7070//icat-users/users';
   constructor(private http: HttpClient) { }
 
   getUsers(): any {
-    return this.http.get( this.rooturl + '/users');
+    return this.http.get( this.rooturl + '/');
   }
   //?name='+nname+'&email'+nemail+'&name'
-  postUser(nname, nemail, npassword): any {
-    return this.http.post(this.rooturl +'/adduser','{name:'+name+'email:'+nemail+',password: '+npassword+'}');
+  postUser(nname, nemail, npassword,nmobile): any {
+    return this.http.post(this.rooturl +'?name='+nname+'+&email='+nemail+'&password='+npassword+'&mobileNo='+nmobile,{});
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../question.service';
-
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -17,20 +17,24 @@ export class QuestionComponent implements OnInit {
   quesno: number = 0;
   optval;
   score;
-  constructor(private qsvc: QuestionService) { }
+  constructor(private router:Router,private qsvc: QuestionService) { }
 
   ngOnInit() {
-    this.qsvc.fetchQuestions().subscribe(data => {
-      this.questionpkg = data;
-      console.log(this.questionpkg);
-      this.question = data.quiz.maths.q1.question;
-      this.option1 = data.quiz.maths.q1.options['0'];
-      this.option2 = data.quiz.maths.q1.options['1'];
-      this.option3 = data.quiz.maths.q1.options['2'];
-      this.option4 = data.quiz.maths.q1.options['3'];
-      //quiz.maths.q2.options[""0""]
+    this.qsvc.seconds = 0;
+    this.qsvc.qnProgress = 0;
 
+    this.qsvc.fetchQuestions().subscribe(data => {
+     this.qsvc.qns = data;
+     this.startTimer();
     })
+  }
+
+  startTimer() {
+    this.qsvc.timer = setInterval(
+      () => {
+        this.qsvc.seconds++;
+      }, 1000);
+
   }
 
   nxtQuestion(): any {
