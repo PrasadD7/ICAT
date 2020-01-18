@@ -22,11 +22,15 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.qsvc.seconds = 0;
     this.qsvc.qnProgress = 0;
+    this.startTimer();//comment it after backend is ready
+    // this.qsvc.fetchQuestions().subscribe(data => {
+    //  this.qsvc.qns = data;
+    //  this.startTimer();
+    // })
+    this.qsvc.qns = this.qsvc.fetchQuestions();
 
-    this.qsvc.fetchQuestions().subscribe(data => {
-     this.qsvc.qns = data;
-     this.startTimer();
-    })
+    console.log(this.qsvc.qns);
+
   }
 
   startTimer() {
@@ -37,14 +41,18 @@ export class QuestionComponent implements OnInit {
 
   }
 
-  nxtQuestion(): any {
+  Answer(qnID,choice): any {
+    if( this.qsvc.qns[this.qsvc.qnProgress].Answer == choice){
+      this.qsvc.score++;
+    }
+    console.log(this.qsvc.score);
+    this.qsvc.qnProgress++;
+    
+    if(this.qsvc.qnProgress==10){
+      clearInterval(this.qsvc.timer);
+      this.router.navigate(['/result']);
+    }
 
-    console.log(this.questionpkg);
-    this.count++;
-    console.log();
-
-    // this.quesno = 'q'+ this.count;
-    this.question = this.questionpkg.quiz.sport;
   }
 
 

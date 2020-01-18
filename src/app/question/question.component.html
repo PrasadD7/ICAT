@@ -1,23 +1,63 @@
-<nav class="navstyle">
-  Question No {{count}}
-</nav>
-<div>
-  <div class="questionpane">
-    <strong>{{ question}}</strong> 
+<app-navbar></app-navbar>
+
+
+
+<div class="card text-center" *ngIf="true">
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress+1)/10)*100"></div>
   </div>
-  <div class="optionpane">
-    <div class="option">
-      <input type="radio" name="optval" id="" >{{option1}}
-    </div>
-    <div class="option">
-      <input type="radio" name="optval" id="">{{option2}}
-    </div>
-    <div class="option">
-      <input type="radio" name="optval" id="">{{option3}}
-    </div>
-    <div class="option">
-      <input type="radio" name="optval" id="">{{option4}}
-    </div>
+  <div class="">
+  <div class="card-header">
+  <h1> <span class="badge badge-primary">{{ qsvc.qnProgress+1 }} </span >
+    </h1>
+    <h1 class="badge badge-primary">
+      {{qsvc.displayTimeElapsed()}}
+    </h1>
+    <h1> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h1>
+  <div *ngIf="qsvc.qns[qsvc.qnProgress].ImageName!=null">
+    <img [src]="" alt="" class="center">
   </div>
-  <div><input type="button" value="Next Question" id="submitBtn" (click)='nxtQuestion()'></div>
+  </div>
+  <div class="card-body">
+
+    <div class="list-group">
+        <ng-container *ngFor="let option of qsvc.qns[qsvc.qnProgress].Options;let i=index">
+          <li *ngIf="option != null" class="list-group-item list-group-item-action" (click)="Answer(qsvc.qns[qsvc.qnProgress],option)">
+            {{option}}
+          </li>
+        </ng-container>
+    </div>
+
+  </div>
+  </div>
+
+
+
+
+
+<!--
+
+<div class="row" *ngIf="qsvc.qns">
+
+<div class="col s8 offset-s2">
+
+<div class="card-content white-text">
+<span class="card-title">{{ qsvc.qnProgress+1 }}</span>
+<p>{{ qsvc.qns[ qsvc.qnProgress].Qn }}</p>
+<div *ngIf="qsvc.qns[qsvc.qnProgress].ImageName!=null">
+  <img [src]="" alt="" class="center">
 </div>
+</div>
+<div class="card-action">
+  <ul class="collection answer">
+    <ng-container *ngFor="let option of qsvc.qns[qsvc.qnProgress].Options;let i=index">
+      <li *ngIf="option != null" class="collection-item" (click)="Answer(qsvc.qns[qsvc.qnProgress])">
+        {{option}}
+      </li>
+    </ng-container>
+  </ul>
+</div>
+</div>
+
+</div> -->
