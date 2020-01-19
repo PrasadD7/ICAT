@@ -12,6 +12,7 @@ import { QuestionService } from './question.service';
 import { AuthGuard } from "./auth/auth.guard";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegisterComponent,
     LoginComponent,
     ResultComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

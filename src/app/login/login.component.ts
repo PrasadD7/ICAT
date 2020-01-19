@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
 
+    this.qsvc.score = 0;
+    
     this.router.navigateByUrl('/questions'); //comment these two lines when backend is ready
     this.qsvc.fetchQuestions();
     this.usersvc.getUsers().subscribe(data => {

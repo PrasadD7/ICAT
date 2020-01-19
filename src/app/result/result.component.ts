@@ -7,10 +7,13 @@ import { QuestionService } from '../question.service';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-score=qsvc.score;
+participantName;
+score;
   constructor(private qsvc : QuestionService) { }
 
   ngOnInit() {
-    
+    this.participantName = JSON.parse(localStorage.getItem('participant')).name;
+    this.score=this.qsvc.score;
+
   }
 }

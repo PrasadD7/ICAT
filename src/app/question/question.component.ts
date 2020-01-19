@@ -7,15 +7,6 @@ import { Router } from "@angular/router";
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  questionpkg;
-  question;
-  option1;
-  option2;
-  option3;
-  option4;
-  count = 1;
-  quesno: number = 0;
-  optval;
   score;
   constructor(private router:Router,private qsvc: QuestionService) { }
 
@@ -27,7 +18,7 @@ export class QuestionComponent implements OnInit {
     //  this.qsvc.qns = data;
     //  this.startTimer();
     // })
-    this.qsvc.qns = this.qsvc.fetchQuestions();
+    this.qsvc.qns = this.qsvc.fetchQuestions(); 
 
     console.log(this.qsvc.qns);
 
@@ -43,7 +34,7 @@ export class QuestionComponent implements OnInit {
 
   Answer(qnID,choice): any {
     if( this.qsvc.qns[this.qsvc.qnProgress].Answer == choice){
-      this.qsvc.score++;
+      this.qsvc.score = this.qsvc.score + this.qsvc.qns[this.qsvc.qnProgress].level;
     }
     console.log(this.qsvc.score);
     this.qsvc.qnProgress++;

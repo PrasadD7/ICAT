@@ -1,4 +1,4 @@
-export class User {
+export class Question {
 
   constructor(
     public name: String,
