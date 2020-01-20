@@ -1,0 +1,23 @@
+/* input:invalid {
+  border: 2px solid red;
+background-color: aliceblue;
+}
+
+input{
+  margin-left: 25%;
+  width: 50%;
+  align-items: center;
+}
+label{
+  margin-left: 25%;
+  font-size: large;
+}
+
+.formgroup{
+  margin-bottom: 15px;
+    padding: 1vh;
+    font-size: x-large;
+}
+.btn{
+  margin-left: 43%;
+} */

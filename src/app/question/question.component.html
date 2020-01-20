@@ -2,10 +2,10 @@
 
 
 
-<div class="card text-center" *ngIf="true">
+<div class="card text-center" >
 
   <div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress+1)/10)*100"></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress+1)/qsvc.qnTotal)*100"></div>
   </div>
   <div class="">
   <div class="card-header">
@@ -15,9 +15,9 @@
       {{qsvc.displayTimeElapsed()}}
     </h1>
     <h1> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h1>
-  <div *ngIf="qsvc.qns[qsvc.qnProgress].ImageName!=null">
+  <!-- <div *ngIf="qsvc.qns[qsvc.qnProgress].ImageName!=null">
     <img [src]="" alt="" class="center">
-  </div>
+  </div> -->
   </div>
   <div class="card-body">
 

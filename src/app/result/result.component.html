@@ -6,9 +6,35 @@
   <div class="card-body">
     <h5 class="card-title">{{ participantName }}</h5>
     <p class="card-text">You have scored</p>
-    
+
   </div>
   <div class="card-footer text-muted">
     {{score}} Points
   </div>
+
+<div>
+  <button class="btn btn-primary" (click)="logOut()"> Log Out </button>
+</div>
+
+      <div *ngFor="let question of qsvc.qns" >
+        <div>
+          <p>
+            Question : {{question.Qn}}
+          </p>
+          <div *ngFor="let option of qsvc.Options" >
+            <p>
+              {{option}}
+            </p>
+          </div>
+          <div>
+            <p>
+              <strong> Correct Answer </strong>  {{question.Answer}}
+              </p>
+            <p>
+              <strong> You Answered </strong>  {{getChoices()}}
+            </p>
+          </div>
+        </div>
+      </div>
+
 </div>

@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ResultComponent } from './result/result.component';
-import { QuestionService } from './question.service';
+import { QuestionService } from '../../services/question.service';
 import { AuthGuard } from "./auth/auth.guard";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';

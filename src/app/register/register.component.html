@@ -1,70 +1,69 @@
-<app-navbar></app-navbar>
 <div class="container-fluid mb-5">
-<form novalidate  (ngSubmit)="onRegister()" #usrform="ngForm">
-
-  <div class="form-group">
-    <label for="inputName">Name </label>
-    <input name="name" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="inputName" [(ngModel)]=userModel.name required>
-  <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
-  </div>
+  <form novalidate  (ngSubmit)="onRegister()" #usrform="ngForm">
 
     <div class="form-group">
-      <label>Email </label>
-      <input name="email" id="email" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
-
-    <div *ngIf="email.errors && (email.touched || email.invalid)">
-
-      <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
-      <small class="text-danger" *ngIf="email.errors.pattern">Email should be in proper format</small>
-
+      <label for="inputName">Name </label>
+      <input name="name" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="inputName" [(ngModel)]=userModel.name required>
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
     </div>
-  </div>
+
+      <div class="form-group">
+        <label>Email </label>
+        <input name="email" id="email" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
+
+      <div *ngIf="email.errors && (email.touched || email.invalid)">
+
+        <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+        <small class="text-danger" *ngIf="email.errors.pattern">Email should be in proper format</small>
+
+      </div>
+    </div>
+
+      <div class="form-group">
+        <label >Password </label>
+        <input name="password" type="password" value="" #pwd="ngModel" required pattern="^(?=.*\d).{4,12}$"class="form-control" id="inputPassword1" [(ngModel)]=userModel.password required>
+
+      <div *ngIf="pwd.errors && ( pwd.touched || pwd.invalid )">
+
+        <small  class="text-danger" *ngIf="pwd.errors.required" > Password is required  </small>
+
+        <small class="text-danger" *ngIf="pwd.errors.pattern" > Password must be between 4 and 12 digits long and include at least one numeric digit.</small>
+
+      </div>
+
+      </div>
+
+      <div class="form-group" *ngIf="pwd.valid">
+        <label>Confirm Password </label>
+        <input name="cpassword"   #cpwd="ngModel" type="password" class="form-control" id="inputPassword2" [(ngModel)]=cpassword required>
+
+          <small  class="text-danger" *ngIf="cpwd.errors" > Confirm Password is required  </small>
+
+          <small class="text-danger" *ngIf="pwd.value != cpwd.value" > Passwords doesn't match.</small>
+
+      </div>
+
 
     <div class="form-group">
-      <label >Password </label>
-      <input name="password" type="password" value="" #pwd="ngModel" required pattern="^(?=.*\d).{4,12}$"class="form-control" id="inputPassword1" [(ngModel)]=userModel.password required>
-
-    <div *ngIf="pwd.errors && ( pwd.touched || pwd.invalid )">
-
-      <small  class="text-danger" *ngIf="pwd.errors.required" > Password is required  </small>
-
-      <small class="text-danger" *ngIf="pwd.errors.pattern" > Password must be between 4 and 12 digits long and include at least one numeric digit.</small>
-
-    </div>
-
-    </div>
-
-    <div class="form-group" *ngIf="pwd.valid">
-      <label>Confirm Password </label>
-      <input name="cpassword"   #cpwd="ngModel" type="password" class="form-control" id="inputPassword2" [(ngModel)]=cpassword required>
-
-        <small  class="text-danger" *ngIf="cpwd.errors" > Confirm Password is required  </small>
-
-        <small class="text-danger" *ngIf="pwd.value != cpwd.value" > Passwords doesn't match.</small>
-
-    </div>
-
-
-  <div class="form-group">
-      <label>Mobile Number</label>
-      <input name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
-      [class.is-invalid]="mobile.invalid && mobile.touched" type="tel" class="form-control" id="inputMobile" minlength="10" maxlength="10" [(ngModel)]=userModel.mobile required />
-  <!-- <small class="text-danger" [class.d-none]="mobile.untouched || mobile.valid" >Mobile Number is required and must be 10 digit </small> -->
-<div *ngIf="mobile.errors && (mobile.touched || mobile.invalid)">
-  <small class="text-danger" *ngIf="mobile.errors.required">
-    Mobile Number is required
+        <label>Mobile Number</label>
+        <input name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
+        [class.is-invalid]="mobile.invalid && mobile.touched" type="tel" class="form-control" id="inputMobile" minlength="10" maxlength="10" [(ngModel)]=userModel.mobile required />
+    <!-- <small class="text-danger" [class.d-none]="mobile.untouched || mobile.valid" >Mobile Number is required and must be 10 digit </small> -->
+  <div *ngIf="mobile.errors && (mobile.touched || mobile.invalid)">
+    <small class="text-danger" *ngIf="mobile.errors.required">
+      Mobile Number is required
+    </small>
+  <small class="text-danger" *ngIf="mobile.errors.pattern">
+    Mobile Number must be 10 digits long
   </small>
-<small class="text-danger" *ngIf="mobile.errors.pattern">
-  Mobile Number must be 10 digits long
-</small>
-</div>
-</div>
-
-
-  <div class="form-group">
-    <button type="submit" [disabled]="usrform.form.invalid" class="btn btn-primary">Submit Details</button>
+  </div>
   </div>
 
-  </form>
 
-</div>
+    <div class="form-group">
+      <button type="submit" [disabled]="usrform.form.invalid" class="btn btn-primary">Submit Details</button>
+    </div>
+
+    </form>
+
+  </div>
