@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../../services/question.service';
@@ -9,26 +10,47 @@ import { Route } from '@angular/compiler/src/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-participantName;
-score;
-i:number = 0;
-  constructor(private qsvc : QuestionService, private router:Router) { }
+
+  score;
+  i: number = 0;
+  j: number = 0;
+  participant;
+  constructor(private qsvc: QuestionService, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
-    this.participantName = JSON.parse(localStorage.getItem('participant')).name;
-    this.score=this.qsvc.score;
-    console.log(this.qsvc.choices);
+    this.participant = JSON.parse(localStorage.getItem('participant'));
+    this.score = this.qsvc.score;
+    console.log(this.participant);
   }
 
-  getChoices() : any{
-    return this.qsvc.choices[this.i++];
+  getChoices(): any {
+    return this.participant.choices[this.i++];
   }
 
-  logOut(){
-    localStorage.clear();
-    this.qsvc.easycounter=0;
-    alert("You have logged out successfully!!!");
-    this.router.navigateByUrl('/');
+  getTimeTaken(): any {
+    return this.participant.timeTakenPerQuestion[this.j++];
+  }
+  logOut() {
+    this.http.post('http://localhost:7070/icat-users/results', {
+      "score": this.qsvc.score,
+      "timeTaken": this.participant.timeTaken,
+      "id": this.participant.id
+    }).subscribe(
+      data => {
+        if (data == null) {
+          alert("Result could not be saved !!!");
+        }
+        else {
+          localStorage.clear();
+          this.qsvc.easycounter = 0;
+          this.qsvc.mediumcounter = 0;
+          this.qsvc.hardcounter = 0;
+          alert("You have logged out successfully!!!");
+          this.router.navigateByUrl('/');
+        }
+      }
+    );
+
   }
 
 }

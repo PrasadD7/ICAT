@@ -15,6 +15,6 @@ export class UsersService {
   }
   //?name='+nname+'&email'+nemail+'&name'
   postUser(user : User): any {
-    return this.http.post<any>(this.rooturl+"?name="+user.name+"&email="+user.email+"&password="+user.password+"&mobileNo="+user.mobile,user);
+    return this.http.post(this.rooturl+"?name="+user.name+"&email="+user.email+"&password="+user.password+"&mobileNo="+user.mobile,user);
   }
 }
