@@ -4,12 +4,12 @@
     Result
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{ participantName }}</h5>
-    <p class="card-text">You have scored</p>
+    <h5 class="card-title">{{ participant.name }}</h5>
+    <p class="card-text">You have scored </p>
 
   </div>
   <div class="card-footer text-muted">
-    {{score}} Points
+    {{qsvc.score}} Points
   </div>
 
 <div>
@@ -28,11 +28,13 @@
           </div>
           <div>
             <p>
-              <strong> Correct Answer </strong>  {{question.Answer}}
+              Correct Answer <strong> {{question.Answer}} </strong>
               </p>
-            <p>
-              <strong> You Answered </strong>  {{getChoices()}}
-            </p>
+              <p>
+                You Answered <strong> {{ getChoices() }} </strong>
+              </p>
+              <p> Time taken by you to answer <strong>  {{ getTimeTaken() }} </strong> Seconds
+              </p>
           </div>
         </div>
       </div>

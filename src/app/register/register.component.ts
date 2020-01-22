@@ -15,15 +15,22 @@ export class RegisterComponent implements OnInit {
 
   constructor(private usersvc: UsersService, private router: Router) { }
 
-  userModel = new User("Enter your name here", "something@example.com", "", "",[],0);
+  userModel = new User(0,"Enter your name here", "something@example.com", "", "", [], [], 0, []);
+  
   ngOnInit() {
   }
 
 
   onRegister() {
     this.usersvc.postUser(this.userModel).subscribe(
-      data => console.log("success " + data),
-    error => console.log("failure" + error)
+      data => {console.log("success " + data);
+      alert('registration successful!');
+      this.router.navigate(['']);
+    },
+      error => {
+        console.log("failure" + error);
+        alert('registration failed!');
+    }
     )
   }
 

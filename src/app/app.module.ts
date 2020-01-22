@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
@@ -13,6 +14,7 @@ import { AuthGuard } from "./auth/auth.guard";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminComponent } from './admin/admin.component';
+
 
 @NgModule({
   declarations: [

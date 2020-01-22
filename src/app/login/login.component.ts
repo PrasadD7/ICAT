@@ -22,10 +22,9 @@ export class LoginComponent implements OnInit {
     this.fetchAllQuestions();
     this.qsvc.qnProgress = 0;
     this.qsvc.qns = [];
-    this.qsvc.easycounter=0;
-    this.qsvc.mediumcounter=0;
-    this.qsvc.hardcounter=0;
-
+    this.qsvc.easycounter = 0;
+    this.qsvc.mediumcounter = 0;
+    this.qsvc.hardcounter = 0;
   }
 
   onLogin() {
@@ -38,10 +37,16 @@ export class LoginComponent implements OnInit {
       this.users.forEach(user => {
 
         if (user.email == this.email && user.password == this.password) {
-          localStorage.clear();
-          this.userdtls = new User(user.name,user.email,user.password,user.mobileNo,[],0)
-          localStorage.setItem('participant', JSON.stringify(user));
-          this.router.navigateByUrl('/questions');
+
+          if(user.timeTaken > 0){
+            alert('You can appear for test only once');
+          }
+          else{
+            this.userdtls = new User(user.id,user.name,user.email,user.password,user.mobileNo,[],[],0,[]);
+            localStorage.setItem('participant', JSON.stringify(this.userdtls));
+            return this.router.navigateByUrl('/questions');
+          }
+
         }
       });
     });
@@ -67,13 +72,15 @@ export class LoginComponent implements OnInit {
     this.qsvc.fetchAllHardQuestions().subscribe(data => {
       this.qsvc.hardquestions = data;
     });
-
-    this.qsvc.fetchEasyQuestion();
-
   }
 
   onSignUp(): any {
     this.router.navigateByUrl('/register');
+  }
+
+  adminLogin():any{
+    localStorage.setItem('participant',"abc");//to be commented
+    this.router.navigateByUrl('/admin');
   }
 
 }

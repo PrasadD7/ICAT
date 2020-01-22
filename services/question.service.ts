@@ -10,6 +10,8 @@ import { User } from '../classes/user';
 export class QuestionService {
   seconds: number;
   timer;
+  qtimer;
+  qseconds:number;
   score: number = 0;
   qnProgress;
   easyquestions: any[];
@@ -18,7 +20,7 @@ export class QuestionService {
   easycounter: number = 0;
   mediumcounter: number = 0;
   hardcounter: number = 0;
-  qnTotal: number = 6;
+  qnTotal: number = 7;
   qns: any[] = [];
   choices: any[] = [];
   //readonly rooturl = 'http://localhost:8080';
