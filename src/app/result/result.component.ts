@@ -1,3 +1,4 @@
+import { UsersService } from './../../../services/users.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ export class ResultComponent implements OnInit {
   i: number = 0;
   j: number = 0;
   participant;
-  constructor(private qsvc: QuestionService, private router: Router, private http: HttpClient) { }
+  constructor(private qsvc: QuestionService, private router: Router, private http: HttpClient, private usersvc: UsersService) { }
 
   ngOnInit() {
     this.participant = JSON.parse(localStorage.getItem('participant'));
@@ -31,11 +32,17 @@ export class ResultComponent implements OnInit {
     return this.participant.timeTakenPerQuestion[this.j++];
   }
   logOut() {
-    this.http.post('http://localhost:7070/icat-users/results', {
-      "score": this.qsvc.score,
-      "timeTaken": this.participant.timeTaken,
-      "id": this.participant.id
-    }).subscribe(
+    // this.usersvc.postUser(this.participant).subscribe(
+    //   data => {console.log("success " + data);
+    //   alert('result saved successfully!');
+    //   this.router.navigate(['']);
+    // },
+    //   error => {
+    //     console.log("failure" + error);
+    //     alert('failed!');
+    // }
+    // )
+    this.http.post('http://localhost:7070/icat-users/results?score='+this.qsvc.score+'&timeTaken='+this.participant.timeTaken+"&id="+this.participant.id,{}).subscribe(
       data => {
         if (data == null) {
           alert("Result could not be saved !!!");
