@@ -1,0 +1,38 @@
+Mongo acquired knowledge:
+
+1. crest- a node package to test REST api with mongo. add dependancy (git link) in app local package.json.
+2. debugging- do npm install -g npm and npm cache clear first.
+
+3. curl- http request made from command prompt/shell.
+4. Gotcha- simple, counterintuitive syntax causing unintended results. e.g. if(a=b) cout<<10; here value of b is assigned to a and if it is non-zero, cout is executed. (so weird for a beginner, right?)
+5. Yoda conditions- to avoid above problem when programmer writes a=b instead of a==b, use the writing style where constant is written on LHS in comparison operator rather than traditional RHS so that 5=a error is caught at compiletime. 5==a is okay.
+6. A note on anonymous functions and lambdas: https://www.vinta.com.br/blog/2015/javascript-lambda-and-arrow-functions/
+var anonymous = function (a, b) { return a + b };
+var anon = (a, b) => { return a + b }; //rhs is the body
+var anon = (a, b) => a + b;
+var anon = a => a*2; //single parameter and single return value
+var () => {//do something}; //no parameters just body
+var () => console.log("a single statement accepted without {}");
+7. DB recap nosql:sql:
+dbs:database
+collections:tables
+documents-records:rows-corespond to objects of a blueprint schema class/model. (ORM)
+fields:columns
+
+schema- defines structure for nosql too! like we define varchar, number etc. structure for an sql table, we define schema for nosql collection.
+this schema dictates how the blueprint class called Model will be. (datatypes of all columns in DB/ all DMs in pojo)
+We instantiate the Model class named employee.
+8. Mongoose is orm tool for mongo-node. (like hibernate). docs are awesome, read them.
+we can imagine mvc layers as- controllers using express in node, models using mongoose in node, views in separate angular app consuming the REST api above.
+
+9. 2 approaches- 1) create schema first 2) generate model and schema from existing DB collections
+naming convention- collection name plural, document/model name singular
+
+10. Model has useful tools for the documents within- 
+	1) Instance methods- https://mongoosejs.com/docs/guide.html#methods
+	2) Query helper functions- specialized instance methods that support method chaining as in queries: extends query builder API
+	https://mongoosejs.com/docs/guide.html#query-helpers
+
+11. TODO potential use of virtuals (non-persistent) for fetched question tracking for a user
+12. Promise is a kind of a proxy used in asynch requests in nodejs till actual values are available.
+The configure debug in vs code has the path of the file to be debugged. it needs to be set there.
