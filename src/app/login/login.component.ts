@@ -34,15 +34,17 @@ export class LoginComponent implements OnInit {
     this.usersvc.getUsers().subscribe(data => {
       this.users = data;
 
+      console.log(this.users);
+      
       this.users.forEach(user => {
 
         if (user.email == this.email && user.password == this.password) {
 
-          if(user.timeTaken > 0){
+          if(false){
             alert('You can appear for test only once');
           }
           else{
-            this.userdtls = new User(user.id,user.name,user.email,user.password,user.mobileNo,[],[],0,[]);
+            this.userdtls = new User(user.id,user.name,user.email,user.password,user.mobile,[],[],0,[]);
             localStorage.setItem('participant', JSON.stringify(this.userdtls));
             return this.router.navigateByUrl('/questions');
           }

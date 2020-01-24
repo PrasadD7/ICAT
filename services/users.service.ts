@@ -7,7 +7,7 @@ import { User } from '../classes/user';
 })
 export class UsersService {
 
-  readonly rooturl='http://localhost:7070/icat-users/users';
+  readonly rooturl='http://localhost:8080/students';
   constructor(private http: HttpClient) { }
 
   getUsers(): any {
