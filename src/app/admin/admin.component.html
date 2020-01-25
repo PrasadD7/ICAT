@@ -12,7 +12,7 @@
       <span class="input-group-text">Question Description</span>
     </div>
     <textarea name="Qn" #Qn="ngModel" [class.is-invalid]="Qn.invalid && Qn.touched" class="form-control" aria-label="With textarea"
-    [(ngModel)]=questionModel.Qn required></textarea>
+    [(ngModel)]=questionModel.Qn spellcheck="true" required></textarea>
 
     <small class="text-danger" [class.d-none]="Qn.valid || Qn.untouched">Question is required</small>
 
@@ -31,7 +31,7 @@
       <span class="input-group-text" id="inputGroup-sizing-default">Option 2</span>
     </div>
     <input name="opt2" type="text" #opt2="ngModel" [class.is-invalid]="opt2.invalid && opt2.touched"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]=questionModel.Options[1] required>
-    
+
     <small class="text-danger" [class.d-none]="opt2.valid || opt2.untouched">Option 2 is required</small>
   </div>
   <div class="input-group mb-3">
@@ -53,59 +53,59 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="inputGroup-sizing-default">Correct Option</span>
     </div>
-    <input #Answer="ngModel" type="text" class="form-control" name="Answer"      
+    <input #Answer="ngModel" type="text" class="form-control" name="Answer"
     [class.is-invalid]="Answer.invalid && Answer.touched" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]=questionModel.Answer required>
-    
+
     <small class="text-danger" [class.d-none]="Answer.valid || Answer.untouched">Correct Answer is required</small>
 
   </div>
-<!-- 
+<!--
   <div class="form-group">
   <select (blur)="validateLevel(level.value)" (change)="validateLevel(level.value)" #level="ngModel" class="custom-select" name="level" [class.is-invalid]="level.invalid && level.touched" [(ng-Model)]=questionModel.level required>
     <option value=1 selected> Select a difficulty level </option>
     <option *ngFor="let dlevel of levels"> {{ dlevel }} </option>
   </select>
 
-<small class='text-danger' [class.d-none]="level.valid || level.untouched"> Please choose a level   
+<small class='text-danger' [class.d-none]="level.valid || level.untouched"> Please choose a level
 </small>
 
   </div> -->
 
- <div class="mb-3"> 
-   <label> 
+ <div class="mb-3">
+   <label>
      Select Difficulty Level
    </label>
-   <div class="form-check">
-    <input class="form-check-input" [(ngModel)]="questionModel.level" type="radio" name="level" value="1">
+   <div class="form-check" >
+    <input class="form-check-input" id="level" [(ngModel)]="questionModel.level" type="radio" name="level" value="1" checked>
     <label class="form-check-label" > Easy </label>
    </div>
    <div class="form-check">
     <input class="form-check-input" [(ngModel)]="questionModel.level" type="radio" name="level" value="2">
     <label class="form-check-label" > Medium </label>
    </div>
-   
+
    <div class="form-check">
     <input class="form-check-input" [(ngModel)]="questionModel.level" type="radio" name="level" value="3">
     <label class="form-check-label" > Hard </label>
      </div>
     </div>
-  
 
-<!--    
+
+<!--
    <div class="form-check">
     <input class="form-check-input" [(ngModel)]="questionModel.level" type="radio" name="level">
     <label class="form-check-label" > Medium </label>
-    
+
    </div>
    <div class="form-check">
     <input class="form-check-input" [(ngModel)]="questionModel.level" type="radio" name="level">
     <label class="form-check-label" > Hard </label>
    </div> -->
- 
+
 
 
   <div class="form-group">
-    <button type="submit" [disabled]="qnsform.form.invalid" class="btn btn-primary">Submit Question</button>
+    <button type="submit" [disabled]="qnsform.form.invalid" class="btn btn-primary" (click)="onSubmit()">Submit Question</button>
   </div>
 
 

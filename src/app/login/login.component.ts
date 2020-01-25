@@ -1,8 +1,8 @@
-import { User } from './../../../classes/user';
+import { User } from '../classes/user';
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from "../../../services/users.service";
+import { UsersService } from "../services/users.service";
 import { Router } from "@angular/router";
-import { QuestionService } from "../../../services/question.service";
+import { QuestionService } from "../services/question.service";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   email;
   password;
   userdtls;
+  errorMsg;
 
   constructor(private usersvc: UsersService, private router: Router, private qsvc: QuestionService) { }
 
@@ -49,11 +50,13 @@ export class LoginComponent implements OnInit {
 
         }
       });
+    },
+    error => {
+      this.errorMsg = error;
+      console.log(this.errorMsg);
+
     });
 
-    if (localStorage.getItem('participant') == null) {
-      alert('Logging in failed !!');
-    }
 
   }
 
@@ -64,15 +67,15 @@ export class LoginComponent implements OnInit {
       console.log(this.qsvc.qns);
     });
 
-    this.qsvc.fetchAllMediumQuestions().subscribe(data => {
-      this.qsvc.mediumquestions = data;
-      console.log(this.qsvc.mediumquestions);
-    });
+  //   this.qsvc.fetchAllMediumQuestions().subscribe(data => {
+  //     this.qsvc.mediumquestions = data;
+  //     console.log(this.qsvc.mediumquestions);
+  //   });
 
-    this.qsvc.fetchAllHardQuestions().subscribe(data => {
-      this.qsvc.hardquestions = data;
-    });
-  }
+  //   this.qsvc.fetchAllHardQuestions().subscribe(data => {
+  //     this.qsvc.hardquestions = data;
+  //   });
+   }
 
   onSignUp(): any {
     this.router.navigateByUrl('/register');

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../../services/question.service';
+import { QuestionService } from '../services/question.service';
 import { Router } from "@angular/router";
-import { User } from "../../../classes/user";
-import { Question } from 'classes/question';
+import { User } from "../classes/user";
+import { Question } from '../classes/question';
 
 @Component({
   selector: 'app-question',
@@ -23,7 +23,7 @@ export class QuestionComponent implements OnInit {
     this.qsvc.qnProgress = 0;
     this.startTimer();
     this.participant = JSON.parse(localStorage.getItem('participant'));
-    this.user = new User(this.participant.id,this.participant.name, this.participant.email, this.participant.password, this.participant.mobileNo,[],[],0,[]);
+    this.user = new User(this.participant.id,this.participant.name, this.participant.email, this.participant.password, this.participant.mobile,[],[],0,[]);
     this.qsvc.fetchEasyQuestion();
     this.currentLevel = 1;
     this.startQTimer();
@@ -83,6 +83,21 @@ export class QuestionComponent implements OnInit {
         this.lastN = 0;
       }
 
+
+      if(this.currentLevel+1 == 2 && this.lastN == this.threshold-1){
+        this.qsvc.fetchAllMediumQuestions().subscribe(data => {
+          this.qsvc.mediumquestions = data;
+          console.log(this.qsvc.mediumquestions);
+        });
+      }
+      else{
+        if (this.currentLevel+1 == 3 && this.lastN == this.threshold-1) {
+          this.qsvc.fetchAllHardQuestions().subscribe(data => {
+            this.qsvc.hardquestions = data;
+            console.log(this.qsvc.hardquestions);
+          });
+        }
+      }
       this.qsvc.qnProgress++;
 
       switch (this.currentLevel) {

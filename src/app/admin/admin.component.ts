@@ -1,4 +1,4 @@
-import { Question } from 'classes/question';
+import { Question } from '../classes/question';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,6 +15,10 @@ levels = ['Easy', 'Medium', 'Hard'];
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit(): any{
+    console.log("IN SUBMIT");
   }
 
 }

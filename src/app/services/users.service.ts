@@ -1,18 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
+import { Observable, EMPTY, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  readonly rooturl='http://localhost:7070/icat-users/users';
+  readonly rooturl='http://localhost:8080/students';
   constructor(private http: HttpClient) { }
 
-  getUsers(): any {
-    return this.http.get( this.rooturl + '/');
+  getUsers(): Observable<Object>  {
+    return this.http.get<Object>( this.rooturl);
+
   }
+
+
 
 isAdmin():any{
   return this.http.get(this.rooturl + '/admins')

@@ -1,9 +1,10 @@
-import { UsersService } from './../../../services/users.service';
+import { UsersService } from '../services/users.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../../services/question.service';
+import { Component, OnInit, ElementRef  } from '@angular/core';
+import { QuestionService } from '../services/question.service';
 import { Route } from '@angular/compiler/src/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-result',
@@ -15,13 +16,53 @@ export class ResultComponent implements OnInit {
   score;
   i: number = 0;
   j: number = 0;
+  k: number = 0;
   participant;
-  constructor(private qsvc: QuestionService, private router: Router, private http: HttpClient, private usersvc: UsersService) { }
+  constructor(private qsvc: QuestionService, private router: Router, private http: HttpClient, private usersvc: UsersService,private elementRef:ElementRef) { }
+
+  chart = [];
+  alldates = [];
 
   ngOnInit() {
     this.participant = JSON.parse(localStorage.getItem('participant'));
     this.score = this.qsvc.score;
     console.log(this.participant);
+
+    // for(this.k=1; this.k<=this.qsvc.qnTotal; this.k++){
+    //   this.alldates.push('question '+this.k);
+    // }
+    // let htmlRef = this.elementRef.nativeElement.querySelector('#canvas');
+    // this.chart = new Chart(htmlRef, {
+    //   type : 'line',
+    //   data : {
+    //     labels: this.alldates,
+    //     datasets: [
+    //       {
+    //         data: this.participant.timeTakenPerQuestion,
+    //         borderColor: "#3cba9f",
+    //         fill: false
+    //       },
+    //       {
+    //         data: this.participant.timeTakenPerQuestion,
+    //         borderColor: "#3cba9f",
+    //         fill: false
+    //       }
+    //     ]
+    //   },
+    //   options: {
+    //     legend: {
+    //       display: false
+    //     },
+    //     scales: {
+    //       xAxes: [{
+    //         display: true
+    //       }],
+    //       yAxes: [{
+    //         display: true
+    //       }],
+    //     }
+    //   }
+    // });
   }
 
   getChoices(): any {
