@@ -1,0 +1,11 @@
+div{
+  padding-top: 2vh;
+  text-align: center;
+  width: 70%;
+  margin-left: 15%;
+}
+button{
+  position: fixed;
+  top: 70%;
+  left: 80%;
+}

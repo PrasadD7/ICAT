@@ -12,10 +12,10 @@ import { User } from "../classes/user";
 export class RegisterComponent implements OnInit {
 
   cpassword;
-
+pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   constructor(private usersvc: UsersService, private router: Router) { }
 
-  userModel = new User(0,"Enter your name here", "something@example.com", "", "", [], [], 0, []);
+  userModel = new User(0,"", "", "", "", [], [], 0, []);
 
   ngOnInit() {
   }

@@ -5,13 +5,13 @@
 
     <div class="form-group">
       <label for="inputName">Name </label>
-      <input name="name" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="inputName" [(ngModel)]=userModel.name required>
+      <input placeholder="Enter your name" name="name" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="inputName" [(ngModel)]=userModel.name required>
     <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
     </div>
 
       <div class="form-group">
         <label>Email </label>
-        <input name="email" id="email" required  #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
+      <input name="email" id="email" type=email pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" required  #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
 
       <div *ngIf="email.errors && (email.touched || email.invalid)">
 
@@ -23,7 +23,7 @@
 
       <div class="form-group">
         <label >Password </label>
-        <input name="password" type="password" value="" #pwd="ngModel" required pattern="^(?=.*\d).{4,12}$"class="form-control" id="inputPassword1" [(ngModel)]=userModel.password required>
+        <input placeholder="Enter a strong password" name="password" type="password" value="" #pwd="ngModel" required pattern="^(?=.*\d).{4,12}$"class="form-control" id="inputPassword1" [(ngModel)]=userModel.password required>
 
       <div *ngIf="pwd.errors && ( pwd.touched || pwd.invalid )">
 
@@ -37,7 +37,7 @@
 
       <div class="form-group" *ngIf="pwd.valid">
         <label>Confirm Password </label>
-        <input name="cpassword"   #cpwd="ngModel" type="password" class="form-control" id="inputPassword2" [(ngModel)]=cpassword required>
+        <input placeholder="Enter the same password again" name="cpassword"   #cpwd="ngModel" type="password" class="form-control" id="inputPassword2" [(ngModel)]=cpassword required>
 
           <small  class="text-danger" *ngIf="cpwd.errors" > Confirm Password is required  </small>
 
@@ -48,7 +48,7 @@
 
     <div class="form-group">
         <label>Mobile Number</label>
-        <input name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
+        <input placeholder="Enter your mobile number" name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
         [class.is-invalid]="mobile.invalid && mobile.touched" type="tel" class="form-control" id="inputMobile" minlength="10" maxlength="10" [(ngModel)]=userModel.mobile required />
     <!-- <small class="text-danger" [class.d-none]="mobile.untouched || mobile.valid" >Mobile Number is required and must be 10 digit </small> -->
   <div *ngIf="mobile.errors && (mobile.touched || mobile.invalid)">

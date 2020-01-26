@@ -1,44 +1,48 @@
 
 <div class="card text-center">
   <div class="card-header">
-    Result
+    <h3>
+      Result
+    </h3>
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{ participant.name }}</h5>
-    <p class="card-text">You have scored </p>
-
+    Hi,
+    <h5 class="card-title">{{ participant.name | uppercase }}</h5>
+    <p class="card-text">You have scored
+      {{qsvc.score}} Points
+   </p>
   </div>
-  <div class="card-footer text-muted">
-    {{qsvc.score}} Points
-  </div>
-
- 
-
 <div>
-  <button class="btn btn-primary" (click)="logOut()"> Log Out </button>
+  <button mat-fab color="primary" (click)="logOut()"> Log Out </button>
 </div>
+<br>
 
-      <div *ngFor="let question of qsvc.qns" >
-        <div>
+<h3> Test Analysis </h3>
+      <div  *ngFor="let question of qsvc.qns" >
+        <mat-card color="">
+        <div >
           <p>
             Question : {{question.Qn}}
           </p>
-          <div *ngFor="let option of qsvc.Options" >
+          <div *ngFor="let option of qsvc.choices" >
             <p>
               {{option}}
             </p>
           </div>
           <div>
-            <p>
-              Correct Answer <strong> {{question.Answer}} </strong>
-              </p>
               <p>
                 You Answered <strong> {{ getChoices() }} </strong>
               </p>
-              <p> Time taken by you to answer <strong>  {{ getTimeTaken() }} </strong> Seconds
+
+            <p>
+              Correct Answer <strong> {{question.Answer}} </strong>
+              </p>
+
+              <p> Time taken by you to answer this question <strong>  {{ getTimeTaken() }} </strong> Seconds
               </p>
           </div>
         </div>
+      </mat-card>
       </div>
 
 </div>

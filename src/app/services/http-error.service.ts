@@ -13,7 +13,7 @@ showError(errors : string){
   console.log('Errors ->',errors);
 
 const modalRef = this._ngbModal.open(AlertComponent);
-modalRef.componentInstance.errorMessage = "Server error";
+modalRef.componentInstance.errorMessage = errors;
 
 }
 

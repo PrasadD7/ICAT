@@ -1,4 +1,4 @@
-import { AngularFireAuth } from '@angular/fire/auth';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
@@ -19,7 +19,10 @@ import { AlertComponent } from './popups/alert/alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorService } from './services/http-error.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MaterialModule } from './material/material.module';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { UpdateQuestionComponent } from './update-question/update-question.component';
+import { DeleteQuestionComponent } from './delete-question/delete-question.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ResultComponent,
     NavbarComponent,
     AdminComponent,
-    AlertComponent
+    AlertComponent,
+    AddQuestionComponent,
+    UpdateQuestionComponent,
+    DeleteQuestionComponent
   ],
   imports: [
     NgbModule,
@@ -39,7 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [QuestionService, AuthGuard,{provide : HTTP_INTERCEPTORS, useClass:HttpErrorInterceptor, multi:true }, HttpErrorService],
   bootstrap: [AppComponent],

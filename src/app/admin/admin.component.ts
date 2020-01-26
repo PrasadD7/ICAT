@@ -1,5 +1,6 @@
 import { Question } from '../classes/question';
 import { Component, OnInit } from '@angular/core';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-admin',
@@ -10,15 +11,10 @@ export class AdminComponent implements OnInit {
 
 questionModel = new Question("",[],"",1);
 
-levels = ['Easy', 'Medium', 'Hard'];
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit(): any{
-    console.log("IN SUBMIT");
-  }
-
+ 
 }

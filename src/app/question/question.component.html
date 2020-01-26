@@ -2,19 +2,20 @@
 
 
 
-<div class="card text-center" >
+<div mat-card>
 
   <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress)/qsvc.qnTotal)*100"></div>
   </div>
   <div class="">
   <div class="card-header">
-  <h1> <span class="badge badge-primary">{{ qsvc.qnProgress+1 }} </span >
+  <h1>
+    <span class="badge badge-primary">{{ qsvc.qnProgress+1 }} </span >
     </h1>
-    <h1 class="badge badge-primary">
+    <h1 class="badge badge-primary" >
       {{qsvc.displayTimeElapsed()}}
     </h1>
-    <h1> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h1>
+    <h3> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h3>
   <!-- <div *ngIf="qsvc.qns[qsvc.qnProgress].ImageName!=null">
     <img [src]="" alt="" class="center">
   </div> -->

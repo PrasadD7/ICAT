@@ -53,7 +53,7 @@ export class QuestionComponent implements OnInit {
     this.user.timeTakenPerQuestion.push(this.qsvc.qseconds);
     console.log(this.qsvc.qseconds);
 
-    if (this.qsvc.qnProgress == this.qsvc.qnTotal) {
+    if (this.qsvc.qnProgress == this.qsvc.qnTotal || this.qsvc.qseconds==120) {
 
       if (this.qsvc.qns[this.qsvc.qnProgress].Answer == choice) {
         this.qsvc.score = this.qsvc.score + this.qsvc.qns[this.qsvc.qnProgress].level;

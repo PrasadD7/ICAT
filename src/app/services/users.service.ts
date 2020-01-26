@@ -14,6 +14,7 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<Object>  {
+    
     return this.http.get<Object>( this.rooturl);
 
   }
