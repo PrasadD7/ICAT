@@ -7,7 +7,7 @@
       email
       </i> -->
       E-Mail
-      <input placeholder="Enter your registered email " type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+      <input style="margin-left:25%; width: 250px;" placeholder="Enter your registered email " type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
       [(ngModel)]='email' required>
     </div>
   <div class="form-group">
@@ -15,7 +15,7 @@
     security
     </i> -->
     Password
-    <input placeholder="Enter password" type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
+    <input style="margin-left:25%; width: 250px;" placeholder="Enter password" type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
   </div>
     <div class="form-group">
       <button type="submit" mat-raised-button (click)="onLogin()">Submit</button>

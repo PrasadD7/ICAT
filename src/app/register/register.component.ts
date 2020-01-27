@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   constructor(private usersvc: UsersService, private router: Router) { }
 
-  userModel = new User(0,"", "", "", "", [], [], 0, []);
+  userModel = new User(0," ", " ", "", "", [], [], 0, []);
 
   ngOnInit() {
   }

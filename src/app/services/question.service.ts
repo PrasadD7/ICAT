@@ -23,22 +23,22 @@ export class QuestionService {
   qnTotal: number = 7;
   qns: any[] = [];
   choices: any[] = [];
-  //readonly rooturl = 'http://localhost:8080';
+  readonly rooturl = 'http://localhost:3000/questions/';
 
   constructor(private http: HttpClient) {
 
   }
 
   fetchAllEasyQuestions(): any {
-    return this.http.get('../assets/questions/easy/questions.json');
+    return this.http.get(this.rooturl + 'easy');
   }
 
   fetchAllMediumQuestions(): any {
-    return this.http.get('../assets/questions/medium/questions.json');
+    return this.http.get(this.rooturl + 'moderate');
   }
 
   fetchAllHardQuestions(): any {
-    return this.http.get('../assets/questions/hard/questions.json');
+    return this.http.get(this.rooturl + 'difficult');
   }
 
   displayTimeElapsed() {
