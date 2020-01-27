@@ -11,7 +11,7 @@
 
       <div class="form-group">
         <label>Email </label>
-      <input name="email" id="email" type=email pattern="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" required  #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
+      <input name="email" id="email" type=email required  #email="ngModel" class="form-control"  type="email" [(ngModel)]=userModel.email required>
 
       <div *ngIf="email.errors && (email.touched || email.invalid)">
 

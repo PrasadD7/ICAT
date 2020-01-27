@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../classes/user';
+import { Question } from '../classes/question';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class QuestionService {
   seconds: number;
   timer;
   qtimer;
-  qseconds:number;
+  qseconds: number;
   score: number = 0;
   qnProgress;
   easyquestions: any[];
@@ -56,6 +57,12 @@ export class QuestionService {
   fetchHardQuestion = function () {
     this.qns.push(this.hardquestions[this.hardcounter++]);;
   }
+
+  addQuestion = function (q: Question): Observable<Question> {
+    console.log(q);
+    return this.http.post(this.rooturl + "add",  q);
+  }
+
 }
 
 

@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.qsvc.score = 0;
 
-    this.router.navigateByUrl('/questions');
     this.usersvc.getUsers().subscribe(data => {
+      console.log(data)
       this.users = data;
 
       this.users.forEach(user => {

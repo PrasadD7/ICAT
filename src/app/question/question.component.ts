@@ -23,11 +23,11 @@ export class QuestionComponent implements OnInit {
     this.qsvc.qnProgress = 0;
     this.startTimer();
     this.participant = JSON.parse(localStorage.getItem('participant'));
-    this.user = new User(this.participant.id,this.participant.name, this.participant.email, this.participant.password, this.participant.mobile,[],[],0,[]);
+    this.user = new User(this.participant.id, this.participant.name, this.participant.email, this.participant.password, this.participant.mobile,[],[],0,[]);
     this.qsvc.fetchEasyQuestion();
     this.currentLevel = 1;
     this.startQTimer();
-    console.log('Current question' + this.qsvc.qns);
+    console.log(this.qsvc.qns);
 
   }
 
