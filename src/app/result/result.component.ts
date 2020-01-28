@@ -27,42 +27,6 @@ export class ResultComponent implements OnInit {
     this.participant = JSON.parse(localStorage.getItem('participant'));
     this.score = this.qsvc.score;
     console.log(this.participant);
-
-    // for(this.k=1; this.k<=this.qsvc.qnTotal; this.k++){
-    //   this.alldates.push('question '+this.k);
-    // }
-    // let htmlRef = this.elementRef.nativeElement.querySelector('#canvas');
-    // this.chart = new Chart(htmlRef, {
-    //   type : 'line',
-    //   data : {
-    //     labels: this.alldates,
-    //     datasets: [
-    //       {
-    //         data: this.participant.timeTakenPerQuestion,
-    //         borderColor: "#3cba9f",
-    //         fill: false
-    //       },
-    //       {
-    //         data: this.participant.timeTakenPerQuestion,
-    //         borderColor: "#3cba9f",
-    //         fill: false
-    //       }
-    //     ]
-    //   },
-    //   options: {
-    //     legend: {
-    //       display: false
-    //     },
-    //     scales: {
-    //       xAxes: [{
-    //         display: true
-    //       }],
-    //       yAxes: [{
-    //         display: true
-    //       }],
-    //     }
-    //   }
-    // });
   }
 
   getChoices(): any {
@@ -72,32 +36,29 @@ export class ResultComponent implements OnInit {
   getTimeTaken(): any {
     return this.participant.timeTakenPerQuestion[this.j++];
   }
+
+  generateResult() {
+    window.print();
+  }
+
   logOut() {
-    // this.usersvc.postUser(this.participant).subscribe(
-    //   data => {console.log("success " + data);
-    //   alert('result saved successfully!');
-    //   this.router.navigate(['']);
-    // },
-    //   error => {
-    //     console.log("failure" + error);
-    //     alert('failed!');
-    // }
-    // ) /1?marks=63&totalTime=96
+
+    localStorage.clear();
+    
     this.http.put('http://localhost:8060/students/' + this.participant.id + "?marks=" + this.qsvc.score + '&totalTime=' + this.participant.timeTaken, { headers: { authorization: this.usersvc.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' }).subscribe(
-        data => {
-          if (data == null) {
-            alert("Result could not be saved !!!");
-          }
-          else {
-            localStorage.clear();
-            this.qsvc.easycounter = 0;
-            this.qsvc.mediumcounter = 0;
-            this.qsvc.hardcounter = 0;
-            alert("You have logged out successfully!!!");
-            this.router.navigateByUrl('/');
-          }
+      data => {
+        if (data == null) {
+          alert("Result could not be saved !!!");
         }
-      );
+        else {
+          this.qsvc.easycounter = 0;
+          this.qsvc.mediumcounter = 0;
+          this.qsvc.hardcounter = 0;
+          alert("You have logged out successfully!!!");
+          this.router.navigateByUrl('/');
+        }
+      }
+    );
 
   }
 

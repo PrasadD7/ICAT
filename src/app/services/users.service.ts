@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class UsersService {
 
-  readonly rooturl = 'http://localhost:8060/students';
-  readonly mailurl = 'http://localhost:8060/sendmail';
+  readonly rooturl = 'http://192.168.1.16:8060/students';
+  readonly mailurl = 'http://192.168.1.16:8060/sendmail';
 
   msg;
 
@@ -40,20 +40,20 @@ export class UsersService {
 
 
 
-    this.http.post("http://localhost:8060/sendmail"
+    this.http.post(this.rooturl + '/sendmail'
       , {
         headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json',
-          "destEmail": user.email,
-          "message": "You have successfully registered for ICATS Exam portal, login to attempt the exam and test your skills based on adaptive testing !",
-          "subject": "ICATS Registration"
+        "destEmail": user.email,
+        "message": "You have successfully registered for ICATS Exam portal, login to attempt the exam and test your skills based on adaptive testing !",
+        "subject": "ICATS Registration"
       }).subscribe(data => {
         console.log(data);
         alert('Email sent successfully !');
       },
-      error => {
-        console.log(error);
-        alert('Email sending failed !');
-      });
+        error => {
+          console.log(error);
+          alert('Email sending failed !');
+        });
 
 
     return this.http.post(this.rooturl + "?name=" + user.name + "&email=" + user.email + "&password=" + user.password + "&mobileNo=" + user.mobile, user, { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' });

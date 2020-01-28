@@ -10,31 +10,33 @@ import { Question } from '../classes/question';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  score: number = 0;
-  lastN: number = 0;
-  threshold: number = 3;
-  currentLevel: number = 1;
+  // score: number = 0;
+  // lastN: number = 0;
+  // threshold: number = 3;
+  // currentLevel: number = 1;
   user: User;
   participant;
+  choice;
+
+
   constructor(private router: Router, private qsvc: QuestionService) { }
 
   ngOnInit() {
-    this.qsvc.seconds = 0;
-    this.qsvc.qnProgress = 0;
-    this.startTimer();
     this.participant = JSON.parse(localStorage.getItem('participant'));
-    this.user = new User(this.participant.id, this.participant.name, this.participant.email, this.participant.password, this.participant.mobile,[],[],0,[]);
+    this.user = new User(this.participant.id, this.participant.name, this.participant.email, this.participant.password, this.participant.mobile, [], [], 0, []);
+    localStorage.setItem("participant", JSON.stringify(this.user));
+    this.qsvc.qnProgress = parseInt(localStorage.getItem("progress"));
     this.qsvc.fetchEasyQuestion();
-    this.currentLevel = 1;
+    this.qsvc.currentLevel = 1;
     this.startQTimer();
     console.log(this.qsvc.qns);
-
   }
 
   startTimer() {
     this.qsvc.timer = setInterval(
       () => {
         this.qsvc.seconds++;
+
       }, 1000);
   }
 
@@ -46,22 +48,27 @@ export class QuestionComponent implements OnInit {
       }, 1000);
   }
 
-  Answer(qnID, choice): any {
-    // this.qsvc.choices.push(choice);
-    this.user.choices.push(choice);
+  setChoice(choice:String){
+    this.choice  = choice;
+  }
+
+  Answer(): any {
+    this.user.choices.push(this.choice);
     clearInterval(this.qsvc.qtimer);
+    localStorage.setItem("timeElapsed", this.qsvc.seconds.toString());
     this.user.timeTakenPerQuestion.push(this.qsvc.qseconds);
     console.log(this.qsvc.qseconds);
+    this.qsvc.qnProgress = parseInt(localStorage.getItem("progress"));
 
-    if (this.qsvc.qnProgress == this.qsvc.qnTotal || this.qsvc.qseconds==120) {
+    if (this.qsvc.qnProgress == this.qsvc.qnTotal || this.qsvc.qseconds == 120) {
 
-      if (this.qsvc.qns[this.qsvc.qnProgress].Answer == choice) {
+      if (this.qsvc.qns[this.qsvc.qnProgress].Answer == this.choice) {
         this.qsvc.score = this.qsvc.score + this.qsvc.qns[this.qsvc.qnProgress].level;
-        this.lastN++;
+        this.qsvc.lastN++;
         this.user.scores[this.qsvc.qnProgress] = this.qsvc.qns[this.qsvc.qnProgress].level;
       }
 
-      this.user.timeTaken= this.qsvc.seconds;
+      this.user.timeTaken = this.qsvc.seconds;
       clearInterval(this.qsvc.timer);
       localStorage.setItem('participant', JSON.stringify(this.user));
       this.router.navigate(['/result']);
@@ -69,38 +76,37 @@ export class QuestionComponent implements OnInit {
     if (this.qsvc.qnProgress < this.qsvc.qnTotal) {
       console.log(' current questions : ' + this.qsvc.qns);
       console.log(this.user);
-      if (this.qsvc.qns[this.qsvc.qnProgress].Answer == choice) {
+      if (this.qsvc.qns[this.qsvc.qnProgress].Answer == this.choice) {
         this.qsvc.score = this.qsvc.score + this.qsvc.qns[this.qsvc.qnProgress].level;
-        this.lastN++;
+        this.qsvc.lastN++;
         this.user.scores[this.qsvc.qnProgress] = this.qsvc.qns[this.qsvc.qnProgress].level;
       }
       else {
-        this.lastN = 0;
+        this.qsvc.lastN = 0;
       }
 
-      if (this.lastN == this.threshold) {
-        this.currentLevel++;
-        this.lastN = 0;
+      if (this.qsvc.lastN == this.qsvc.threshold) {
+        this.qsvc.currentLevel++;
+        this.qsvc.lastN = 0;
       }
 
 
-      if(this.currentLevel+1 == 2 && this.lastN == this.threshold-1){
+      if (this.qsvc.currentLevel + 1 == 2 && this.qsvc.lastN == this.qsvc.threshold - 1) {
         this.qsvc.fetchAllMediumQuestions().subscribe(data => {
           this.qsvc.mediumquestions = data;
           console.log(this.qsvc.mediumquestions);
         });
       }
-      else{
-        if (this.currentLevel+1 == 3 && this.lastN == this.threshold-1) {
+      else {
+        if (this.qsvc.currentLevel + 1 == 3 && this.qsvc.lastN == this.qsvc.threshold - 1) {
           this.qsvc.fetchAllHardQuestions().subscribe(data => {
             this.qsvc.hardquestions = data;
             console.log(this.qsvc.hardquestions);
           });
         }
       }
-      this.qsvc.qnProgress++;
 
-      switch (this.currentLevel) {
+      switch (this.qsvc.currentLevel) {
         case 1:
           this.qsvc.fetchEasyQuestion();
           this.startQTimer();
@@ -117,9 +123,12 @@ export class QuestionComponent implements OnInit {
           break;
       }
 
-      console.log('Last three' + this.lastN);
 
-      console.log('Current level ' + this.currentLevel);
+    localStorage.setItem("progress", (++this.qsvc.qnProgress).toString());
+
+      console.log('Last three' + this.qsvc.lastN);
+
+      console.log('Current level ' + this.qsvc.currentLevel);
 
       console.log('Current score ' + this.qsvc.score);
     }

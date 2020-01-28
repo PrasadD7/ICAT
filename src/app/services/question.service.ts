@@ -24,6 +24,10 @@ export class QuestionService {
   qnTotal: number = 7;
   qns: any[] = [];
   choices: any[] = [];
+  // score: number = 0;
+  lastN: number = 0;
+  threshold: number = 3;
+  currentLevel: number = 1;
   readonly rooturl = 'http://localhost:3000/questions/';
 
   constructor(private http: HttpClient) {

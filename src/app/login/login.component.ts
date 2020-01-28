@@ -20,12 +20,15 @@ export class LoginComponent implements OnInit {
   constructor(private usersvc: UsersService, private router: Router, private qsvc: QuestionService) { }
 
   ngOnInit() {
+    localStorage.clear();
     this.fetchAllQuestions();
     this.qsvc.qnProgress = 0;
     this.qsvc.qns = [];
     this.qsvc.easycounter = 0;
     this.qsvc.mediumcounter = 0;
     this.qsvc.hardcounter = 0;
+    localStorage.setItem("timeElapsed",this.qsvc.seconds.toString());
+    localStorage.setItem("progress",this.qsvc.qnProgress);
   }
 
   onLogin() {
@@ -39,25 +42,32 @@ export class LoginComponent implements OnInit {
 
         if (user.email == this.email && user.password == this.password) {
 
-          if(user.timeTaken > 0){
+          if (user.timeTaken > 0) {
             alert('You can appear for test only once');
           }
-          else{
-            this.userdtls = new User(user.id,user.name,user.email,user.password,user.mobileNo,[],[],0,[]);
+          else {
+            this.userdtls = new User(user.id, user.name, user.email, user.password, user.mobileNo, [], [], 0, []);
             localStorage.setItem('participant', JSON.stringify(this.userdtls));
+            clearInterval()
+            this.startTimer();
             return this.router.navigateByUrl('/questions');
           }
 
         }
       });
     },
-    error => {
-      this.errorMsg = error;
-      console.log(this.errorMsg);
+      error => {
+        this.errorMsg = error;
+        console.log(this.errorMsg);
 
-    });
+      });
+  }
 
-
+  startTimer() {
+    this.qsvc.timer = setInterval(
+      () => {
+        this.qsvc.seconds++;
+      }, 1000);
   }
 
   fetchAllQuestions() {
@@ -66,23 +76,17 @@ export class LoginComponent implements OnInit {
       console.log(this.qsvc.easyquestions);
       console.log(this.qsvc.qns);
     });
+    this.qsvc.seconds = 0;
+    this.qsvc.qnProgress = 0;
 
-  //   this.qsvc.fetchAllMediumQuestions().subscribe(data => {
-  //     this.qsvc.mediumquestions = data;
-  //     console.log(this.qsvc.mediumquestions);
-  //   });
-
-  //   this.qsvc.fetchAllHardQuestions().subscribe(data => {
-  //     this.qsvc.hardquestions = data;
-  //   });
-   }
+  }
 
   onSignUp(): any {
     this.router.navigateByUrl('/register');
   }
 
-  adminLogin():any{
-    localStorage.setItem('participant',"abc");//to be commented
+  adminLogin(): any {
+    localStorage.setItem('participant', "abc");//to be commented
     this.router.navigateByUrl('/admin');
   }
 

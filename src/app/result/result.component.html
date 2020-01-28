@@ -12,9 +12,7 @@
       {{qsvc.score}} Points
    </p>
   </div>
-<div>
-  <button mat-fab color="primary" (click)="logOut()"> Log Out </button>
-</div>
+
 <br>
 
 <h3> Test Analysis </h3>
@@ -45,4 +43,19 @@
       </mat-card>
       </div>
 
+</div>
+
+<div>
+  <button id="logout" mat-fab matTooltip="Save result and Log Out" color="primary" (click)="logOut()">
+  <mat-icon>
+      exit_to_app
+  </mat-icon>
+  </button>
+</div>
+<div>
+  <button id="result" mat-fab matTooltip="Print Result" color="warn" (click)="generateResult()">
+<mat-icon>
+  local_printshop
+</mat-icon>
+  </button>
 </div>

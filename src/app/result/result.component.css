@@ -4,8 +4,13 @@ div{
   width: 70%;
   margin-left: 15%;
 }
-button{
+#logout{
   position: fixed;
-  top: 70%;
-  left: 80%;
+  top: 75%;
+  left: 90%;
+}
+ #result{
+  position: fixed;
+  top: 60%;
+  left: 90%;
 }
