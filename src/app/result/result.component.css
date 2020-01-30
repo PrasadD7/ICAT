@@ -9,8 +9,13 @@ div{
   top: 75%;
   left: 90%;
 }
- #result{
+#result{
   position: fixed;
   top: 60%;
+  left: 90%;
+}
+#display{
+  position: fixed;
+  top: 45%;
   left: 90%;
 }

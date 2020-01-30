@@ -11,6 +11,7 @@ export class User {
     public choices: any[] = [],
     public timeTaken: number,
     public timeTakenPerQuestion: any[] = []
-  ) { }
+  ) {
+   }
 
 }

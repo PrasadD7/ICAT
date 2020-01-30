@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../classes/user';
 import { Question } from '../classes/question';
 
 
@@ -31,7 +30,7 @@ export class QuestionService {
   readonly rooturl = 'http://localhost:3000/questions/';
 
   constructor(private http: HttpClient) {
-
+    
   }
 
   fetchAllEasyQuestions(): any {

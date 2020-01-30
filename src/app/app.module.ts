@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ResultComponent } from './result/result.component';
 import { QuestionService } from './services/question.service';
 import { AuthGuard } from "./auth/auth.guard";
+import { AdminGuard } from "./auth/admin.guard";
 import { ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminComponent } from './admin/admin.component';
@@ -23,6 +24,7 @@ import { MaterialModule } from './material/material.module';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { UpdateQuestionComponent } from './update-question/update-question.component';
 import { DeleteQuestionComponent } from './delete-question/delete-question.component';
+
 
 @NgModule({
   declarations: [
@@ -48,8 +50,9 @@ import { DeleteQuestionComponent } from './delete-question/delete-question.compo
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [QuestionService, AuthGuard,{provide : HTTP_INTERCEPTORS, useClass:HttpErrorInterceptor, multi:true }, HttpErrorService],
+  providers: [QuestionService, AuthGuard,AdminGuard,{provide : HTTP_INTERCEPTORS, useClass:HttpErrorInterceptor, multi:true }, HttpErrorService],
   bootstrap: [AppComponent],
   entryComponents:[ AlertComponent ]
 })
+
 export class AppModule { }

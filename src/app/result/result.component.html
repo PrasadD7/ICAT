@@ -1,61 +1,96 @@
 
-<div class="card text-center">
-  <div class="card-header">
-    <h3>
-      Result
-    </h3>
+<app-navbar></app-navbar>
+  <ng-template [ngIf]="!display">
+
+
+    <div class="card-header">
+      <h3>
+        Result
+      </h3>
+    </div>
+
+    <div style="float: left;size: 10px;">
+      <mat-card>
+
+        <img src="../../assets/trophy.png" height="200px" width="200px" />
+
+        <mat-card-content>
+
+          <div style="font-size:4vh">
+
+            Mr. <strong> {{ participant.name | uppercase }} </strong> with
+            Student ID : <strong> {{ participant.id }} </strong>,
+            has successfully completed The Intelligent Computerized Adaptive Test (ICAT) with <strong>
+              {{qsvc.score}} </strong> Points
+              <br>
+
+            <strong>
+              Congratulations !!!
+            </strong> 
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+
+  </ng-template>
+
+  <div>
+    <button id="logout" mat-fab matTooltip="Log Out" color="primary" (click)="logOut()">
+      <mat-icon>
+        exit_to_app
+      </mat-icon>
+    </button>
   </div>
-  <div class="card-body">
-    Hi,
-    <h5 class="card-title">{{ participant.name | uppercase }}</h5>
-    <p class="card-text">You have scored
-      {{qsvc.score}} Points
-   </p>
+  <div>
+    <button id="result" mat-fab matTooltip="Print Result" color="warn" (click)="generateResult()">
+      <mat-icon>
+        local_printshop
+      </mat-icon>
+    </button>
   </div>
 
-<br>
+  <div>
+    <button id="display" mat-fab matTooltip="View Analysis" (click)="generateaAnalysis()">
 
-<h3> Test Analysis </h3>
-      <div  *ngFor="let question of qsvc.qns" >
-        <mat-card color="">
-        <div >
+      <i class="material-icons">
+        bar_chart
+      </i>
+    </button>
+  </div>
+
+
+  <ng-template [ngIf]="display">
+
+
+    <h3> Test Analysis </h3>
+    <div *ngFor="let question of qsvc.qns; let i = index">
+      <mat-card>
+        <div>
           <p>
             Question : {{question.Qn}}
           </p>
-          <div *ngFor="let option of qsvc.choices" >
-            <p>
-              {{option}}
-            </p>
-          </div>
+
           <div>
-              <p>
-                You Answered <strong> {{ getChoices() }} </strong>
-              </p>
+            <p>
+              You Answered <strong> {{ finalResult[i].choice }} </strong>
+            </p>
 
             <p>
-              Correct Answer <strong> {{question.Answer}} </strong>
-              </p>
+              Correct Answer <strong> {{ question.Answer }} </strong>
+            </p>
 
-              <p> Time taken by you to answer this question <strong>  {{ getTimeTaken() }} </strong> Seconds
-              </p>
+            <p> Time taken by you to answer this question <strong> {{ finalResult[i].time }} </strong> Seconds
+            </p>
           </div>
         </div>
       </mat-card>
-      </div>
+    </div>
 
-</div>
 
-<div>
-  <button id="logout" mat-fab matTooltip="Save result and Log Out" color="primary" (click)="logOut()">
-  <mat-icon>
-      exit_to_app
-  </mat-icon>
-  </button>
-</div>
-<div>
-  <button id="result" mat-fab matTooltip="Print Result" color="warn" (click)="generateResult()">
-<mat-icon>
-  local_printshop
-</mat-icon>
-  </button>
-</div>
+
+
+  </ng-template>
+

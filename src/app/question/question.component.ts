@@ -23,6 +23,11 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.participant = JSON.parse(localStorage.getItem('participant'));
+    // this.participant.name = "qqq";
+    // this.participant.id=12;
+    // this.participant.email="aaa";
+    // this.participant.password="www";
+    // this.participant.mobile="985663222";
     this.user = new User(this.participant.id, this.participant.name, this.participant.email, this.participant.password, this.participant.mobile, [], [], 0, []);
     localStorage.setItem("participant", JSON.stringify(this.user));
     this.qsvc.qnProgress = parseInt(localStorage.getItem("progress"));
@@ -50,6 +55,7 @@ export class QuestionComponent implements OnInit {
 
   setChoice(choice:String){
     this.choice  = choice;
+    console.log(choice);
   }
 
   Answer(): any {

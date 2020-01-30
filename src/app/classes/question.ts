@@ -9,8 +9,3 @@ export class Question {
 
 }
 
-//{"QnId":1,
-// "Qn":"Which of the following is not OOPS concept in Java?",
-// "Options":["Inheritance","Encapsulation","Polymorphism","Compilation"],
-// "Answer":"Compilation",
-// "level":1}
