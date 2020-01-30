@@ -29,9 +29,9 @@ export class UsersService {
   //http://192.168.1.10:8060/students/1?marks=12&totalTime=60
 
   storeResult(id: number, marks: number, totalTime: number): Observable<Object> {
-    console.log(id+' '+marks+' '+totalTime);
+    console.log('id - '+id+' '+marks+' '+totalTime);
     
-    return this.http.put<Object>(this.rooturl + '/' + id + '?marks=' + marks + '&totalTime=' + totalTime,  { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") } });
+    return this.http.put(this.rooturl + '/' + id + '?marks=' + marks + '&totalTime=' + totalTime,  { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' });
   }
 
   isAdmin(): any {
@@ -39,24 +39,19 @@ export class UsersService {
   }
 
   postUser(user: User): any {
-    this.http.post(this.rooturl + '/sendmail', {
-      destEmail: "prasaddeshkar7@gmail.com",
+       return this.http.post(this.rooturl + "?name=" + user.name + "&email=" + user.email + "&password=" + user.password + "&mobileNo=" + user.mobile, user, { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' });
+  }
+
+  sendRegistrationMail( email : String){
+    return this.http.post(this.rooturl + '/sendmail', {
+      destEmail: email,
       message: "Registration successful!",
       subject: "register"
     }, {
       headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }
-    })
-      .subscribe(data => {
-        console.log(data);
-        alert('Email sent successfully !');
-      },
-        error => {
-          console.log(error);
-          alert('Email sending failed !');
-        });
-
-
-    return this.http.post(this.rooturl + "?name=" + user.name + "&email=" + user.email + "&password=" + user.password + "&mobileNo=" + user.mobile, user, { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' });
-
+    });
+      
   }
+
+
 }

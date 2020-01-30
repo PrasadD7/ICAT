@@ -31,7 +31,18 @@ pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<
         console.log("failure" + error);
         alert('registration failed!');
     }
-    )
+    );
+
+  this.usersvc.sendRegistrationMail(this.userModel.email)
+  .subscribe(data => {
+    console.log(data);
+    alert('Email sent successfully !');
+  },
+    error => {
+      console.log(error);
+      alert('Email sending failed !');
+    });
+
   }
 
 }

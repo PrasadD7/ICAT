@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from "../services/users.service";
 import { Router } from "@angular/router";
 import { QuestionService } from "../services/question.service";
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   users;
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.qsvc.score = 0;
 
-    if (localStorage.getItem('participant') == null) {
+    var isLogin=false;
 
       this.usersvc.getUsers().subscribe(data => {
         console.log(data)
@@ -45,29 +45,28 @@ export class LoginComponent implements OnInit {
         this.users.forEach(user => {
 
           if (user.email == this.email && user.password == this.password) {
-            if(user.result==null){
+            if(user.result.totalTime == 0){
               this.userdtls = new User(user.id, user.name, user.email, user.password, user.mobileNo, [], [], 0, []);
               localStorage.setItem('participant', JSON.stringify(this.userdtls));
               clearInterval();
               this.startTimer();
+              isLogin = true;
               return this.router.navigateByUrl('/questions');
             }
             else{
               alert('Test can be attempted only once');
-              return this.router.navigateByUrl('/register');
-            }
-            
+              return this.router.navigateByUrl('/');
+            }          
           }
         });
       },
         error => {
           this.errorMsg = error;
           console.log(this.errorMsg);
-
         });
-    } else {
-      alert("log out first and then re login");
-    }
+        if (isLogin) {
+          alert("Invalid login");
+        }       
   }
 
   startTimer() {

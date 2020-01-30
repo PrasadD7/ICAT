@@ -10,7 +10,7 @@ import { QuestionService } from '../services/question.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnInit, AfterViewChecked {
+export class ResultComponent implements OnInit {
 
   score;
   i: number;
@@ -57,11 +57,17 @@ export class ResultComponent implements OnInit, AfterViewChecked {
 
       var obj = {
         time: this.participant.timeTakenPerQuestion[index],
-        choice: choice
+        choice: choice,
+        answer:this.qsvc.qns[index].Answer,
+        level:this.qsvc.qns[index].level
       };
       this.finalResult.push(obj);
 
     });
+
+    console.log(this.finalResult);
+    localStorage.clear();
+    
   }
 
   generateResult() {
@@ -85,33 +91,7 @@ export class ResultComponent implements OnInit, AfterViewChecked {
         alert("Result could not be saved !!!");
         console.log(error);
         }
-      )
+      );
 
-    // this.http.put('http://192.168.1.10:8060/students/' + this.participant.id + "?marks=" + this.qsvc.score + '&totalTime=' + this.participant.timeTaken, { headers: { authorization: this.usersvc.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' })
-    //   .subscribe(
-    //     data => {
-    //       if (data == null) {
-    //         alert("Result could not be saved !!!");
-    //       }
-    //       else {
-    //         localStorage.clear();
-    //         this.qsvc.easycounter = 0;
-    //         this.qsvc.mediumcounter = 0;
-    //         this.qsvc.hardcounter = 0;
-    //         alert("You have logged out successfully!!!");
-    //         this.router.navigateByUrl('/');
-    //       }
-    //     }
-    //   );
-
-
-    // this.http.put<Object>(this.rooturl, { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") } });
-
-    localStorage.clear();
   }
-
-  ngAfterViewChecked() {
-    this.cdr.detectChanges();
-  }
-
 }

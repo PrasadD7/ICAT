@@ -1,96 +1,99 @@
-
 <app-navbar></app-navbar>
-  <ng-template [ngIf]="!display">
+<ng-template [ngIf]="!display">
 
 
-    <div class="card-header">
-      <h3>
-        Result
-      </h3>
-    </div>
-
-    <div style="float: left;size: 10px;">
-      <mat-card>
-
-        <img src="../../assets/trophy.png" height="200px" width="200px" />
-
-        <mat-card-content>
-
-          <div style="font-size:4vh">
-
-            Mr. <strong> {{ participant.name | uppercase }} </strong> with
-            Student ID : <strong> {{ participant.id }} </strong>,
-            has successfully completed The Intelligent Computerized Adaptive Test (ICAT) with <strong>
-              {{qsvc.score}} </strong> Points
-              <br>
-
-            <strong>
-              Congratulations !!!
-            </strong> 
-
-          </div>
-
-        </mat-card-content>
-
-      </mat-card>
-    </div>
-
-  </ng-template>
-
-  <div>
-    <button id="logout" mat-fab matTooltip="Log Out" color="primary" (click)="logOut()">
-      <mat-icon>
-        exit_to_app
-      </mat-icon>
-    </button>
-  </div>
-  <div>
-    <button id="result" mat-fab matTooltip="Print Result" color="warn" (click)="generateResult()">
-      <mat-icon>
-        local_printshop
-      </mat-icon>
-    </button>
+  <div class="card-header">
+    <h3>
+      Result
+    </h3>
   </div>
 
-  <div>
-    <button id="display" mat-fab matTooltip="View Analysis" (click)="generateaAnalysis()">
+  <div style="float: left;size: 10px;">
+    <mat-card>
 
-      <i class="material-icons">
-        bar_chart
-      </i>
-    </button>
+      <img src="../../assets/trophy.png" height="200px" width="200px" />
+
+      <mat-card-content>
+
+        <div style="font-size:4vh">
+
+          Mr. <strong> {{ participant.name | uppercase }} </strong> with
+          Student ID : <strong> {{ participant.id }} </strong>,
+          has successfully completed The Intelligent Computerized Adaptive Test (ICAT) with <strong>
+            {{qsvc.score}} </strong> Points
+          <br>
+
+          <strong>
+            Congratulations !!!
+          </strong>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
   </div>
 
+</ng-template>
 
-  <ng-template [ngIf]="display">
+<div>
+  <button id="logout" mat-fab matTooltip="Log Out" color="primary" (click)="logOut()">
+    <mat-icon>
+      exit_to_app
+    </mat-icon>
+  </button>
+</div>
+<div>
+  <button id="result" mat-fab matTooltip="Print Result" color="warn" (click)="generateResult()">
+    <mat-icon>
+      local_printshop
+    </mat-icon>
+  </button>
+</div>
+
+<div>
+  <button id="display" mat-fab matTooltip="View Analysis" (click)="generateaAnalysis()">
+
+    <i class="material-icons">
+      bar_chart
+    </i>
+  </button>
+</div>
 
 
+<ng-template [ngIf]="display">
+
+  <div class="card-header">
     <h3> Test Analysis </h3>
-    <div *ngFor="let question of qsvc.qns; let i = index">
-      <mat-card>
+  </div>
+  <div *ngFor="let question of qsvc.qns; let i = index">
+    <mat-card>
+      <div>
+        <p>
+          Question : {{question.Qn}}
+        </p>
+
         <div>
           <p>
-            Question : {{question.Qn}}
+            You Answered <strong> {{ finalResult[i].choice }} </strong>
           </p>
 
-          <div>
-            <p>
-              You Answered <strong> {{ finalResult[i].choice }} </strong>
-            </p>
+          <p>
+            Correct Answer <strong> {{ question.Answer }} </strong>
+          </p>
 
-            <p>
-              Correct Answer <strong> {{ question.Answer }} </strong>
-            </p>
+          <p> Time taken by you to answer this question <strong> {{ finalResult[i].time }} </strong> Seconds
+          </p>
 
-            <p> Time taken by you to answer this question <strong> {{ finalResult[i].time }} </strong> Seconds
-            </p>
-          </div>
+          <p>
+            Difficulty level : <strong> {{ finalResult[i].level }} </strong>
+          </p>
         </div>
-      </mat-card>
-    </div>
+      </div>
+    </mat-card>
+  </div>
 
 
 
 
-  </ng-template>
-
+</ng-template>
