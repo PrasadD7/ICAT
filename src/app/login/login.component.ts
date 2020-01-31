@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     var isLogin=false;
 
-      this.usersvc.getUsers().subscribe(data => {
+      this.usersvc.getUsers().subscribe((data) => {
         console.log(data)
         this.users = data;
 
@@ -51,20 +51,23 @@ export class LoginComponent implements OnInit {
               clearInterval();
               this.startTimer();
               isLogin = true;
+              console.log('authentic');
               return this.router.navigateByUrl('/questions');
             }
             else{
+              console.log('Test can be attempted only once');
+              
               alert('Test can be attempted only once');
               return this.router.navigateByUrl('/');
             }          
           }
         });
       },
-        error => {
+        (error) => {
           this.errorMsg = error;
           console.log(this.errorMsg);
         });
-        if (isLogin) {
+        if (!isLogin) {
           alert("Invalid login");
         }       
   }

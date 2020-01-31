@@ -2,67 +2,63 @@
 
 <div mat-card style="padding: 10px;width: 50%;margin-left: 25%;margin-right: 25%;">
 
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""
-        aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress)/qsvc.qnTotal)*100"></div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow=""
+      aria-valuemin="0" aria-valuemax="100" [style.width.%]="((qsvc.qnProgress)/qsvc.qnTotal)*100"></div>
+  </div>
+  <div class="questionpane">
+    <div class="card-header">
+      <h1>
+        <span class="badge badge-primary">{{ qsvc.qnProgress+1 }} </span>
+      </h1>
+      <h1 class="badge badge-primary">
+        {{qsvc.displayTimeElapsed()}}
+      </h1>
+      <h5> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h5>
+
     </div>
-    <div class="questionpane">
-      <div class="card-header">
-        <h1>
-          <span class="badge badge-primary">{{ qsvc.qnProgress+1 }} </span>
-        </h1>
-        <h1 class="badge badge-primary">
-          {{qsvc.displayTimeElapsed()}}
-        </h1>
-        <h5> {{ qsvc.qns[ qsvc.qnProgress].Qn }} </h5>
-     
-      </div>
-     
-      <div class="card-body">
 
-        <div class="list-group">
-          <ng-container>
-            <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[0] != null"
-              [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[0], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[0] }"
-              class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[0])'>
-              {{qsvc.qns[qsvc.qnProgress].Options[0]}}
-            </li>
-          </ng-container>
-          <ng-container>
-            <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[1] != null"
-              [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[1], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[1]  }"
-              class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[1])'>
-              {{qsvc.qns[qsvc.qnProgress].Options[1]}}
-            </li>
-          </ng-container>
-          <ng-container>
-            <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[2] != null"
-              [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[2], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[2]  }"
-              class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[2])'>
-              {{qsvc.qns[qsvc.qnProgress].Options[2]}}
-            </li>
-          </ng-container>
+    <div class="card-body">
 
-          <ng-container>
-            <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[3] != null"
-              [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[3], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[3]  }"
-              class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[3])'>
-              {{qsvc.qns[qsvc.qnProgress].Options[3]}}
-            </li>
-          </ng-container>
+      <div class="list-group">
+        <ng-container>
+          <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[0] != null"
+            [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[0], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[0] }"
+            class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[0])'>
+            {{qsvc.qns[qsvc.qnProgress].Options[0]}}
+          </li>
+        </ng-container>
+        <ng-container>
+          <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[1] != null"
+            [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[1], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[1]  }"
+            class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[1])'>
+            {{qsvc.qns[qsvc.qnProgress].Options[1]}}
+          </li>
+        </ng-container>
+        <ng-container>
+          <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[2] != null"
+            [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[2], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[2]  }"
+            class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[2])'>
+            {{qsvc.qns[qsvc.qnProgress].Options[2]}}
+          </li>
+        </ng-container>
 
-        </div>
-
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)='Answer()' style="margin-left: 40%;">
-            Next Question
-          </button>
-        </mat-card-actions>
+        <ng-container>
+          <li *ngIf="qsvc.qns[qsvc.qnProgress].Options[3] != null"
+            [ngClass]="{'bg-success': choice == qsvc.qns[qsvc.qnProgress].Options[3], 'text-white': choice == qsvc.qns[qsvc.qnProgress].Options[3]  }"
+            class="list-group-item list-group-item-action" (click)='setChoice(qsvc.qns[qsvc.qnProgress].Options[3])'>
+            {{qsvc.qns[qsvc.qnProgress].Options[3]}}
+          </li>
+        </ng-container>
 
       </div>
-      
-</div>
 
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)='Answer()' style="margin-left: 40%;">
+          Next Question
+        </button>
+      </mat-card-actions>
 
+    </div>
 
-
+  </div>

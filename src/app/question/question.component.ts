@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../services/question.service';
 import { Router } from "@angular/router";
 import { User } from "../classes/user";
-import { Question } from '../classes/question';
 
 @Component({
   selector: 'app-question',
@@ -10,24 +9,17 @@ import { Question } from '../classes/question';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  // score: number = 0;
-  // lastN: number = 0;
-  // threshold: number = 3;
-  // currentLevel: number = 1;
   user: User;
   participant;
   choice;
-
-
+  
   constructor(private router: Router, private qsvc: QuestionService) { }
 
   ngOnInit() {
+
+    console.log("in question component");
+
     this.participant = JSON.parse(localStorage.getItem('participant'));
-    // this.participant.name = "qqq";
-    // this.participant.id=12;
-    // this.participant.email="aaa";
-    // this.participant.password="www";
-    // this.participant.mobile="985663222";
     this.user = new User(this.participant.id, this.participant.name, this.participant.email, this.participant.password, this.participant.mobile, [], [], 0, []);
     localStorage.setItem("participant", JSON.stringify(this.user));
     this.qsvc.qnProgress = parseInt(localStorage.getItem("progress"));
@@ -53,8 +45,8 @@ export class QuestionComponent implements OnInit {
       }, 1000);
   }
 
-  setChoice(choice:String){
-    this.choice  = choice;
+  setChoice(choice: String) {
+    this.choice = choice;
     console.log(choice);
   }
 
@@ -130,7 +122,7 @@ export class QuestionComponent implements OnInit {
       }
 
 
-    localStorage.setItem("progress", (++this.qsvc.qnProgress).toString());
+      localStorage.setItem("progress", (++this.qsvc.qnProgress).toString());
 
       console.log('Last three' + this.qsvc.lastN);
 

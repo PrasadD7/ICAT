@@ -4,15 +4,15 @@
     Admin Console
   </h3>
 </div>
+<div>
   <mat-horizontal-stepper>
-    <mat-step label="Add question" state="phone">
+    <mat-step label="Add question" >
       <app-add-question></app-add-question> 
     </mat-step>
-    <mat-step label="Update an existing question" state="chat">
+    
+    <mat-step label="Update or delete an existing question">
      <app-update-question></app-update-question>
     </mat-step>
-    <mat-step label="Delete an existing question">
-      <app-delete-question></app-delete-question>
-    </mat-step>
-
-
+  </mat-horizontal-stepper>
+</div>
+  

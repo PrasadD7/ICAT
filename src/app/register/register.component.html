@@ -4,6 +4,9 @@
       Create a new account
     </h3>
   </div>
+<mat-progress-spinner mode="indeterminate" *ngIf="spinner" style="margin-left: 45%;">
+
+</mat-progress-spinner>
 
 <div class="container-fluid mb-5">
   <mat-card>
@@ -11,7 +14,7 @@
 
     <div class="form-group">
       <label for="inputName">Name </label>
-      <input placeholder="Enter your name here" name="name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
+      <input placeholder="Enter your name" name="name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
         type="text" class="form-control" id="inputName" [(ngModel)]=userModel.name required>
       <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
     </div>
@@ -19,7 +22,7 @@
     <div class="form-group">
       <label>Email </label>
       <input name="email" id="email" [class.is-invalid]="email.invalid && email.touched" type="email" pattern="[\w-]+@([\w-]+\.)+[\w-]+" #email="ngModel"
-        class="form-control" type="email" [(ngModel)]=userModel.email placeholder="Enter your email address here" required>
+        class="form-control" type="email" [(ngModel)]=userModel.email placeholder="Enter your email address" required>
 
       <div *ngIf="email.errors && (email.touched || email.invalid)">
 
@@ -31,7 +34,7 @@
 
     <div class="form-group">
       <label>Password </label>
-      <input placeholder="Enter a strong password here" name="password" type="password" value="" #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched"
+      <input placeholder="Enter a strong password" name="password" type="password" value="" #pwd="ngModel" [class.is-invalid]="pwd.invalid && pwd.touched"
         pattern="^(?=.*\d).{4,8}$" class="form-control" id="inputPassword1" [(ngModel)]=userModel.password required>
 
       <div *ngIf="pwd.errors && ( pwd.touched || pwd.invalid )">
@@ -59,7 +62,7 @@
 
     <div class="form-group">
       <label>Mobile Number</label>
-      <input placeholder="Enter your mobile number here" name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
+      <input placeholder="Enter your mobile number" name="mobileNo" #mobile="ngModel" pattern="^\d{10}$"
         [class.is-invalid]="mobile.invalid && mobile.touched" type="tel" class="form-control" id="inputMobile"
         minlength="10" maxlength="10" [(ngModel)]=userModel.mobile required />
 

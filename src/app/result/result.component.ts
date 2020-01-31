@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { QuestionService } from '../services/question.service';
+import { Email } from '../classes/email';
 
 @Component({
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +23,8 @@ export class ResultComponent implements OnInit {
 
   choices: any = [];
   times: any = [];
+  
+  email = new Email("","","");
 
   finalResult: any[];
 
@@ -58,8 +61,8 @@ export class ResultComponent implements OnInit {
       var obj = {
         time: this.participant.timeTakenPerQuestion[index],
         choice: choice,
-        answer:this.qsvc.qns[index].Answer,
-        level:this.qsvc.qns[index].level
+        answer: this.qsvc.qns[index].Answer,
+        level: this.qsvc.qns[index].level
       };
       this.finalResult.push(obj);
 
@@ -67,7 +70,7 @@ export class ResultComponent implements OnInit {
 
     console.log(this.finalResult);
     localStorage.clear();
-    
+
   }
 
   generateResult() {
@@ -80,6 +83,17 @@ export class ResultComponent implements OnInit {
   }
 
   logOut() {
+    this.email.EmailID = this.participant.email;
+    this.email.Subject = "ICATS Result";
+    this.email.Message = "Hi "+this.participant.name+", Your ICATS Result - Score=" + this.qsvc.score + " Points, Time taken by you=" + this.qsvc.seconds + " Seconds, CONGRATULATIONS !!!";
+    this.usersvc.sendMail(this.email).subscribe(
+      (data)=>{
+        alert("Result sent to your email successfully");
+      },
+      (error)=>{
+        alert("Result couldn't be sent");
+      }
+    )
 
     this.usersvc.storeResult(this.participant.id, this.qsvc.score, this.qsvc.seconds)
       .subscribe(
@@ -88,10 +102,12 @@ export class ResultComponent implements OnInit {
           console.log(data);
         },
         (error) => {
-        alert("Result could not be saved !!!");
-        console.log(error);
+          alert("Result could not be saved !!!");
+          console.log(error);
         }
       );
+
+
 
   }
 }

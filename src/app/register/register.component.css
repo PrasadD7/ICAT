@@ -5,6 +5,9 @@ div{
   margin-left: 15%;
 }
 
+input{
+  margin-left:30%; width: 40%;
+}
 /* input:invalid {
   border: 2px solid red;
 background-color: aliceblue;
