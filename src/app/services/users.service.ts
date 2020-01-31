@@ -12,7 +12,8 @@ import { QuestionService } from './question.service';
 export class UsersService {
 
   readonly rooturl = 'http://192.168.1.10:8060/students';
-  readonly mailurl = 'http://192.168.1.10:8060/sendmail';
+  readonly mailurl = 'http://192.168.1.10:8060';
+  //http://192.168.1.10:8060/sendmail
 
   msg;
 
@@ -41,14 +42,14 @@ export class UsersService {
   postUser(user: User): any {
        return this.http.post(this.rooturl + "?name=" + user.name + "&email=" + user.email + "&password=" + user.password + "&mobileNo=" + user.mobile, user, { headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json' });
   }
-
+ // http://192.168.1.10:8060/sendmail
   sendRegistrationMail( email : String){
-    return this.http.post(this.rooturl + '/sendmail', {
+    return this.http.post(this.mailurl + '/sendmail', {
       destEmail: email,
       message: "Registration successful!",
       subject: "register"
     }, {
-      headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }
+      headers: { authorization: this.createBasicAuthToken("admin01", "admin01") }, responseType: 'text' as 'json'
     });
       
   }
