@@ -1,33 +1,41 @@
 <app-navbar></app-navbar>
-<mat-card> 
-<div class="container-fluid mb-1" >
-  <form>
-  <div class="form-group">
-    <!-- <i class="material-icons">
+
+  <div class="card-header">
+    <h3>
+      Intelligent Computerized Adaptive Testing System (ICATS)
+    </h3>
+  </div>
+ 
+  <div class="container-fluid mb-5">
+    <mat-card>
+    <form>
+      <div class="form-group">
+        <!-- <i class="material-icons">
       email
       </i> -->
-      E-Mail
-      <input style="margin-left:25%; width: 250px;" placeholder="Enter your registered email " type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
-      [(ngModel)]='email' required>
-    </div>
-  <div class="form-group">
-    <!-- <i class="material-icons">
+        E-Mail
+        <input style="margin-left:25%; width: 250px;" placeholder="Enter your registered email " type="email"
+          name="email" class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]='email' required>
+      </div>
+      <div class="form-group">
+        <!-- <i class="material-icons">
     security
     </i> -->
-    Password
-    <input style="margin-left:25%; width: 250px;" placeholder="Enter password" type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
-  </div>
-    <div class="form-group">
-      <button type="submit" mat-raised-button (click)="onLogin()">Submit</button>
-  </div>
-  <div>
-      <button type="submit" mat-raised-button color="primary" (click)="onSignUp()">Create a new one</button>
-  </div>
-  <br />
-<div>
-  <button type="submit" color="warn" mat-raised-button (click)="adminLogin()">Admin Login</button>
-</div>
-</form>
+        Password
+        <input style="margin-left:25%; width: 250px;" placeholder="Enter password" type="password" name="password"
+          class="form-control" id="password" [(ngModel)]='password'>
+      </div>
+      <div class="form-group">
+        <button type="submit" mat-raised-button (click)="onLogin()">Submit</button>
+      </div>
+      <div>
+        <button type="submit" mat-raised-button color="primary" (click)="onSignUp()">Create a new one</button>
+      </div>
+      <br />
+      <div>
+        <button type="submit" color="warn" mat-raised-button (click)="adminLogin()">Admin Login</button>
+      </div>
+    </form>
 
-</div>
-</mat-card>
+  </mat-card>
+  </div>
