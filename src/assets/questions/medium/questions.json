@@ -1,0 +1,60 @@
+[
+  {
+    "QnId": 6,
+    "Qn": "Which of the following is not a method of Object class ?",
+    "Options": [
+      "sleep",
+      "hashCode",
+      "toString",
+      "notifyAll"
+    ],
+    "Answer": "sleep",
+    "level": 2
+  },
+  {
+    "QnId": 7,
+    "Qn": "Which of the following method is used for marshalling ",
+    "Options": [
+      "ObjectOutputStream",
+      "ObjectInputStream"
+    ],
+    "Answer": "ObjectOutputStream",
+    "level": 2
+  },
+  {
+    "QnId": 4,
+    "Qn": "When Overloading does not occur?",
+    "Options": [
+      " More than one method with same name but different method signature and different number or type of parameters",
+      "More than one method with same name, same signature but different number of signature",
+      "More than one method with same name, same signature, same number of parameters but different type",
+      "More than one method with same name, same number of parameters and type but different signature"
+    ],
+    "Answer": "More than one method with same name, same number of parameters and type but different signature",
+    "level": 2
+  },
+  {
+    "QnId": 11,
+    "Qn": "Which page directive should be used in JSP to generate a PDF page?",
+    "Options": [
+      "contentType",
+      "generatePdf",
+      "typePDF",
+      "contentPDF"
+    ],
+    "Answer": "contentType",
+    "level": 2
+  },
+  {
+    "QnId": 12,
+    "Qn": "Which tag should be used to pass information from JSP to included JSP?",
+    "Options": [
+      "Using <%jsp:page> tag",
+      "Using <%jsp:param> tag",
+      "Using <%jsp:import> tag",
+      "Using <%jsp:useBean> tag"
+    ],
+    "Answer": "Using <%jsp:param> tag",
+    "level": 2
+  }
+]

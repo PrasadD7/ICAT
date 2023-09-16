@@ -1,0 +1,21 @@
+div{
+  padding-top: 2vh;
+  text-align: center;
+  width: 70%;
+  margin-left: 15%;
+}
+#logout{
+  position: fixed;
+  top: 75%;
+  left: 90%;
+}
+#result{
+  position: fixed;
+  top: 60%;
+  left: 90%;
+}
+#display{
+  position: fixed;
+  top: 45%;
+  left: 90%;
+}

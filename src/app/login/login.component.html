@@ -1,19 +1,44 @@
-<div class="container-fluid mb-5"><form>
-  <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
-    [(ngModel)]='email'required>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" name="password" class="form-control" id="password" [(ngModel)]='password'>
-  </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary" (click)="onLogin()">Submit</button>
-  </div>
-  <div>
-      <button type="submit" class="btn btn-secondary" (click)="onSignUp()">Create a new one</button>
-  </div>
-</form>
+<app-navbar></app-navbar>
+
+<div class="card-header">
+  <h3>
+    Intelligent Computerized Adaptive Testing System (ICATS)
+  </h3>
+</div>
+
+<div class="container-fluid mb-5 ">
+  <mat-card>
+    <form>
+      <div class="form-group ">
+        <!-- <i class="material-icons">
+      email
+      </i> -->
+        E-Mail
+        <input  placeholder="Enter registered email " type="email" name="email"
+          class="form-control" id="email" aria-describedby="emailHelp" [(ngModel)]='email' required>
+      </div>
+      <div class="form-group">
+        <!-- <i class="material-icons">
+    security
+    </i> -->
+        Password
+        <input  placeholder="Enter password" type="password" name="password"
+          class="form-control" id="password" [(ngModel)]='password'>
+      </div>
+      <div >
+        <button type="submit" class="btn-success" mat-raised-button (click)="onLogin()">Participant Login</button>
+      </div>
+
+      <div>
+        <button type="submit" color="warn" mat-raised-button (click)="adminLogin()">Admin Login</button>
+      </div>
+
+      <div>
+        <button type="submit" mat-raised-button color="primary" (click)="onSignUp()">Create a new Participant
+          account</button>
+      </div>
+
+    </form>
+
+  </mat-card>
 </div>
